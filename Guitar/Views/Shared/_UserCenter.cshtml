@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bootstrap-3.3.7-dist/css/bootstrap.min.css")
+    @Scripts.Render("~/bootstrap-3.3.7-dist/js/bootstrap.min.js")
+    @Styles.Render("~/font-awesome-4.7.0/css/font-awesome.min.css")
+    @Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+
+    <style type="text/css">
+        .navbar .nav > li .dropdown-menu {
+            margin: 0;
+        }
+
+        .navbar .nav > li:hover .dropdown-menu {
+            display: block;
+        }
+        /*.headimg{
+            height:40px;
+            width:45px;
+        }*/
+        .userin {
+            height: 200px;
+            display: none;
+            float: left;
+            position: absolute;
+            /*right: 12%;*/
+            width: 200px;
+            border: none;
+            background-color: #E7EFF3;
+            overflow: visible;
+            margin-left: -100px;
+            width: 240px;
+            padding: 20px 0 0;
+            background: #fff;
+            -webkit-box-shadow: rgba(0,0,0,.16) 0 2px 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.16);
+            border-radius: 0 0 4px 4px;
+            line-height: normal;
+        }
+
+            .userin a {
+                text-decoration: none;
+                color: #090808;
+            }
+
+        .listall {
+            width: 100%;
+            height: 20px;
+            margin: 14px 9px;
+        }
+
+            .listall a {
+                font-size: 15px;
+            }
+
+                .listall a:hover {
+                    /*font-size: 17px;*/
+                    color: #BBBBBB;
+                }
+
+        .footuse {
+            width: 90%;
+            padding-top: 10px;
+        }
+
+            .footuse a {
+                float: right;
+                padding-right: 10px;
+            }
+
+        .footbtn {
+            margin: 10px 0;
+            float: right;
+        }
+
+        .headimg a:hover {
+            margin: 0;
+        }
+
+        .headimg:hover .userin {
+            display: block;
+        }
+
+        .name {
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            font-size: 20px;
+        }
+
+            .name a {
+                text-decoration: none;
+            }
+
+        .use {
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        .footer {
+            background: #efefef;
+        }
+
+        .fo {
+            clear: both;
+            margin-top: 30px;
+        }
+
+        .fo-left {
+            width: 55%;
+            float: left;
+        }
+
+        .aboutus {
+            width: 100%;
+        }
+
+        .abouthead {
+            font-size: 20px;
+            text-decoration: none;
+            color: #808080;
+        }
+
+        .aboutlist {
+        }
+
+            .aboutlist a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 15px;
+                padding-right: 30px;
+                color: #181717;
+            }
+
+        .fo-right {
+            float: left;
+        }
+
+        .ico {
+            width: 6%;
+            float: left;
+            margin-right: 30px;
+        }
+
+            .ico img:hover {
+                opacity: 0.7;
+            }
+
+        .copyright {
+            clear: both;
+            width: 100%;
+            /*text-align: center;*/
+            font-size: 15px;
+            padding: 20px 0px;
+            color: #B8B0B0;
+        }
+
+
+        .navfont a {
+            font-size: 15px;
+            color: #000000;
+        }
+
+        .headimage img {
+            height: 34px;
+            width: 34px;
+        }
+
+            .headimage img:hover {
+                /*height:40px;width:40px;*/
+                opacity: 0.8;
+            }
+
+             #leftside {
+        width: 20%;
+        border: 1px solid #808080;
+        height: 800px;
+        float: left;
+    }
+
+    #rightside {
+        width: 70%;
+        float: left;
+        margin-left: 20px;
+        border: 1px solid #808080;
+        height: 800px;
+    }
+
+    .userlogo {
+        height: 30px;
+        width: auto;
+        text-align: center;
+    }
+
+    .usershow {
+        padding-top: 50px;
+        height: auto;
+        border: 0.5px solid #808080;
+        border-style: none;
+        border-bottom-style: solid;
+        text-align: center;
+    }
+    
+    .userinfo {
+        width: 100%;
+        text-align:center;
+    }
+    .userinfo img{
+        text-align: center; /*让div内部文字居中*/
+    background-color: #fff;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    }
+    .tongji {
+        padding-top: 10px;
+        width: 100%;
+        height: 100px;
+    }
+
+        .tongji a {
+            text-decoration: none;
+        }
+
+            .tongji a:hover {
+                color: #00B8C0;
+            }
+
+    .guanzhu {
+        width: 50%;
+        text-align: center;
+        float: left;
+    }
+
+    .list-group {
+        list-style: none !important;
+    }
+
+        .list-group li {
+            font-size: 18px;
+            display: block;
+        }
+
+            .list-group li a {
+                text-align: center;
+                cursor: pointer;
+                text-decoration: none;
+                color: #333;
+                display: block;
+                line-height: 39px;
+            }
+
+                .list-group li a:hover {
+                    background-color: #00a1d6;
+                }
+    </style>
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Guitar", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "font-size:30px;color:#84B9EF" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="navfont">@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li class="dropdown navfont">
+                        @Html.ActionLink("乐谱", "Index", "MusicScore")
+                    </li>
+                    <li class="navfont">@Html.ActionLink("视频", "Index", "Video")</li>
+                    <li class="navfont">@Html.ActionLink("攻略", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li class="dropdown">
+                        @Html.ActionLink("发布乐谱", "Contact", "MusicScore", new { @class = "navbar-brand", @style = "font-size:15px;color:#C00000;" })
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("发布乐谱", "Create", "MusicScore")</li>
+                            <li>@Html.ActionLink("发布视频", "Create", "Video")</li>
+                            <li>@Html.ActionLink("发布帖子", "Create", "Posts")</li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                @if (Session["User_name"] != null)
+                {
+                    using (Html.BeginForm("LogOff", "LoginRegister", FormMethod.Post, new { id = "logoutForm", @class = "navbar-form navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="headimg">
+                            <a class="headimage"><img src="@Session["User_img"]" class="img-circle img-responsive" /></a>
+                            <div class="userin">
+                                <div class="name"><a>[@Session["User_name"]]@*[慧然肯来]*@</a></div>
+                                <div class="use">
+                                    <div class="list-left" style="width:50%; float:left;">
+                                        <div class="listall"><a href="@Url.Action("Index","Users",new { id= Convert.ToInt32(Session["Users_id"].ToString()) })"><i class="fa fa-user-o fa-fw"></i> 我的空间</a></div>
+                                        <div class="listall"> <a href="#"><i class="fa fa-music fa-fw"></i> 我的乐谱</a></div>
+                                    </div>
+                                    <div class="list-left" style="width:50%; float:left;">
+                                        <div class="listall"><a href="@Url.Action("Create","MusicScore")"><i class="fa fa-file-text-o fa-fw"></i> 发布乐谱</a></div>
+                                        <div class="listall"><a href="@Url.Action("InfoSet","Users")"><i class="fa fa-cog fa-fw"></i> 个人信息</a></div>
+                                    </div>
+                                </div>
+                                <div class="footuse">
+                                    @*<a>退出</a>*@
+                                    <div class="footbtn"><input type="submit" value="退出" class="btn btn-info" /></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("注册", "Register", "LoginRegister", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("登录", "Login", "LoginRegister", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+
+                @using (Html.BeginForm("Index", "Search", FormMethod.Post, new { id = "search", @class = "navbar-form navbar-right" }))
+                {
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="搜乐谱,视频..." style="border:none" />@*<i class="fa fa-search fa-2x" aria-hidden="true"></i>*@
+                        @*<input type="submit" value="search" />*@
+                        <span class="input-group-addon" style="border:none"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container" style="padding-top:60px;">
+        <div id="leftside">
+            <div class="userlogo"><h2 style="color:#476269;">个人中心</h2></div>
+            <div class="usershow">
+                <div class="userinfo">
+                    <img src="@Session["User_img"]" class="img-circle img-responsive" />
+                </div>
+                <h4 style="text-align:center">[@Session["User_name"]]</h4>
+            </div>
+            <div class="tongji">
+                <a class="guanzhu" href="#">
+                    <p style="color:#90A4AE;">关注数</p>
+                    <p style="color:#140303">0</p>
+                </a>
+                <a class="guanzhu" href="#">
+                    <p style="color:#90A4AE">粉丝数</p>
+                    <p style="color:#140303">0</p>
+                </a>
+            </div>
+            <ul class="list-group">
+                <li><a class="list-group-item" id="zhuye" href="@Url.Action("Index","Users",new { id= Convert.ToInt32(Session["Users_id"].ToString()) })">个人主页</a></li>
+                <li><a class="list-group-item" id="info" href="@Url.Action("InfoSet","Users")">信息设置</a></li>
+                <li><a class="list-group-item" id="myheadimg" href="@Url.Action("Headimg","Users")">我的头像</a></li>
+                <li><a class="list-group-item" id="myguanzhu" href="@Url.Action("MyGuanzhu","Users")">我的关注</a></li>
+                <li><a class="list-group-item" id="mycollection" href="MyCollection.aspx">收藏夹</a></li>
+                <li><a class="list-group-item" id="secure" href="ChangPwd.aspx">安全设置</a></li>
+                <li><a class="list-group-item" id="composition" href="@Url.Action("Create","MusicScore")">创作中心</a></li>
+            </ul>
+        </div>
+        <div id="rightside">
+            @RenderBody()
+        </div>
+        
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="fo">
+                <div class="aboutus">
+                    <div class="aboutlist">
+                        <a>关于我们</a>
+                        <a>联系我们</a>
+                        <a>您的建议</a>
+                        <a>免责声明</a>
+                        <a>举报投诉</a>
+                        <a>使用帮助</a>
+                        <a>合作申请</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                Copyright © 2016 江西师范大学 All Rights Reserved | 赣 18702515413
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

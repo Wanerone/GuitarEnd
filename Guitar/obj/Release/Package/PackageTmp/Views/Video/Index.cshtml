@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Guitar.Models.Video>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/plyr.css" rel="stylesheet" />
+<script src="~/Scripts/plyr.js"></script>
+<style>
+    .m{ margin-left: auto; margin-right: auto; width: 640px; margin-top: 100px; }
+</style>
+<h2>Index</h2>
+<div class="m">
+    <video poster="vs.png" controls>
+        <source src="~/Video/2.mp4" type="video/mp4">
+        <!-- <source src="path/to/video.webm" type="video/webm">-->
+        <!-- Captions are optional -->
+    </video>
+    <script>plyr.setup();</script>
+    <video controls="controls">
+        <source src="~/Video/2.mp4" type="video/mp4" />
+    </video>
+</div>

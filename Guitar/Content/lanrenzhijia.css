@@ -1,0 +1,33 @@
+/* 代码整理：懒人之�?www.lanrenzhijia.com */
+*{ margin:0; padding:0; list-style:none;}
+body{ font-size:12px;}
+img{ border:none;}
+/*public*/
+.fl{text-decoration:none;font-size:20px;}
+.fl a{color:#000000;}
+.fl a:hover{color:#58D5D3}
+.fr{float:right}
+.cf:after{content:"";clear:both;display:block;height:0;overflow:hidden}
+.cf{zoom:1}
+.pb10{padding-bottom:10px}
+.mt10{margin-top:10px;font-size:17px;width: 200px;overflow: hidden;height:22px;}
+/*main*/
+.lanrenzhijia{background:#fff;width: 100%;/*box-shadow:0 0 10px #ccc;*/}
+.lanrenzhijia .title{height:33px;border-bottom: 3px solid #e7e7e7;padding-bottom:10px;}
+.lanrenzhijia .title h2{ font-size: 20px;font-family: "microsoft yahei";}
+.lanrenzhijia .title-list{ position: relative; top: 6px;}
+.lanrenzhijia .title-list li{font-size:20px; width: 146px; line-height: 20px; text-align: center; float: left; display: inline;font-family: sans-serif;}
+.lanrenzhijia .title-list li.on{ color: #ff6600; font-weight: bold;}
+.lanrenzhijia .title-list p{position:absolute;top:24px;left:0px;width:146px;height:7px;border-top: 3px solid #ff6600; overflow: hidden; text-align: center;}
+.lanrenzhijia .title-list b{display:inline-block;width:0;height:0;margin-top:-3px;border-style:solid dashed dashed dashed;border-width:9px;border-color: #ff6600 #fff #fff #fff;overflow: hidden;zoom: 1;font-size: 0;}
+
+.product{ height: 450px; position: relative; overflow: hidden; display: none; margin-top: 20px;}
+.product ul{ position: absolute; left: 0px;}
+.product-wrap .showw{ display: block;}
+.product-wrap .product li{ float: left;  margin-right: 24px;background: #f3f3f3;border: 2px solid #fafafa; transition:0.4s;-webkit-transition:0.4s;-moz-transition: 0.4s;-o-transition: 0.4s;}
+/*.product-wrap .product li.ml0{margin-left:0px;}*/
+.product-wrap .product li a.imgwrap{ display: block; width: 200px; height: 113px; background: #fff; text-align:center;overflow:hidden;}
+.product-wrap .product li p{padding-left: 7px;color: #8EA6B4;line-height: 22px;}
+.product-wrap .product li p a{ color:#666666; text-decoration: none;}
+.product-wrap .product li p a:hover{ color: #ff6600; text-decoration: none;}
+/* 代码整理：懒人之�?www.lanrenzhijia.com */

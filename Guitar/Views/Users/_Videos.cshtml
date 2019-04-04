@@ -1,0 +1,26 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Guitar.ViewModel.VideoUserViewModel>
+<div class="container-fluid videoss video-list">
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="video-item">
+                    <div class="video-item-lt">
+                        <a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})"><img src="@p.Vi_img" width="180" alt=""></a>
+                    </div>
+                    <div class="video-item-rb">
+                        <div class="text-block text-title">
+                            <a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})" title="">@p.Vi_title</a>
+                        </div>
+                        <div class="text-block text-artist">
+                            <a href="">UP主:@p.User_name</a>
+                        </div>
+                        <div class="text-block description">类别:@p.Vi_label</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

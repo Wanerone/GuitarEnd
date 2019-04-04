@@ -1,0 +1,209 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model Guitar.ViewModel.MusicDetailsViewModel
+@using Webdiyer.WebControls.Mvc;
+
+@{
+    ViewBag.Title = "吉他谱";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+@Styles.Render("~/bootstrap-3.3.7-dist/css/bootstrap.min.css")
+@Scripts.Render("~/bootstrap-3.3.7-dist/js/bootstrap.min.js")
+@Styles.Render("~/font-awesome-4.7.0/css/font-awesome.min.css")
+@Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+@Scripts.Render("~/Scripts/lanrenzhijia.js")
+@Styles.Render("~/Content/lanrenzhijia.css")
+<script src="/demos/googlegg.js"></script>
+<script src="~/Scripts/demo.js"></script>
+<link href="~/Content/demo.css" rel="stylesheet" />
+<link href="~/Content/port.css" rel="stylesheet" />
+<link href="~/Content/One.css" rel="stylesheet" />
+<script src="~/Scripts/One.js"></script>
+<style>
+        /* 所有class为menu的div中的ul样式 */
+        .menu{
+           height:30px;
+           margin-top:10px;
+        }
+div.menu ul
+{
+    list-style:none; /* 去掉ul前面的符号 */
+    margin: 0px; /* 与外界元素的距离为0 */
+    padding: 0px; /* 与内部元素的距离为0 */
+    width: auto; /* 宽度根据元素内容调整 */
+}
+/* 所有class为menu的div中的ul中的li样式 */
+div.menu ul li
+{
+    float:left; /* 向左漂移，将竖排变为横排 */
+}
+div.menu ul li a, div.menu ul li a:visited
+{
+    cursor:pointer;
+    /*background-color: #465c71; /* 背景色 */*/
+    /*border: 1px #4e667d solid; /* 边框 */*/
+    color: #dde4ec; /* 文字颜色 */
+    display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
+    line-height: 1.35em; /* 行高 */
+    padding: 4px 4px; /* 内部填充的距离 */
+    text-decoration: none; /* 不显示超链接下划线 */
+    white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
+}
+div.menu ul li a:hover
+{
+    background-color: #bfcbd6; /* 背景色 */
+    color: #465c71; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+div.menu ul li a:active
+{
+    background-color: #465c71; /* 背景色 */
+    color: #cfdbe6; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+.yiren{
+    width:100%;
+    padding:0;
+    margin:0;
+}
+.yuepu{
+    padding-top:30px;
+    width:100%;
+}
+</style>
+<div class="">
+    <div class="menu">
+        <ul style="">
+            <li><a href="@Url.Action("Index","Home")">首页</a></li>
+            <li><a>></a></li>
+            <li><a style="color:#000000">吉他谱</a></li>
+        </ul>
+    </div>
+    <div class="yiren">
+        <h3 style="">热门谱集</h3>
+        <div class="row">
+            @foreach (Users m in Model.Us2)
+            {
+                <div class="col-sm-6 col-md-2">
+                    <div class="thumbnail">
+                     <a href="@Url.Action("Index","Users",new { id=@m.User_id})"><img src="@m.User_img" alt="" width="171" height="171"></a> 
+                        <div class="caption">
+                            <p>@m.User_name</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+   
+    <div class="yuepu">
+        <div class="lanrenzhijia">
+            <div class="title cf">
+                <a class="f1" style="text-decoration:none;display:inline;font-size:25px;cursor:pointer;color:#000000">分类</a>
+                <ul class="title-list fr cf ">
+                    <li class="on">民谣吉他</li>
+                    <li>古典吉他</li>
+                    <li>电吉他</li>
+                    <li>尤克里里</li>
+                    <li>其他</li>
+                    <p><b></b></p>
+                </ul>
+            </div>
+            <div class="product-wrap">
+
+                <div class="product showw">
+
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore1)
+                        {
+                            <li>
+                                <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,name=@p.Ms_title})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                                <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                                <p class="pb10"> @p.Ms_label</p>
+                            </li>  }
+                    </ul>
+
+                </div>
+                <!--案例2-->
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore2)
+                        {
+                            <li>
+                                <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,name=@p.Ms_title})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                                <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                                <p class="pb10"> @p.Ms_label</p>
+                            </li>  }
+                    </ul>
+                </div>
+                <!--案例3-->
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore3)
+                        {
+                            <li>
+                                <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,name=@p.Ms_title})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                                <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                                <p class="pb10"> @p.Ms_label</p>
+                            </li>  }
+                    </ul>
+                </div>
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore4)
+                        {
+                            <li>
+                                <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,name=@p.Ms_title})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                                <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                                <p class="pb10"> @p.Ms_label</p>
+                            </li>  }
+                    </ul>
+                </div>
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore5)
+                        {
+                            <li>
+                                <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,name=@p.Ms_title})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                                <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                                <p class="pb10"> @p.Ms_label</p>
+                            </li>  }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="yiren">
+        <h3>热门吉他谱</h3>
+        <div id="mscore">
+            @Html.Partial("_Index1", Model.MScore6)
+        </div>
+        @section scripts{@{Html.RegisterMvcPagerScriptResource();}}
+        
+        @*<div class="wrapper">
+            <ul>
+                @foreach (MusicScore m in Model.MScore6)
+                {
+                    <li>
+                        <div class='picBox'>
+                            <div class='showww'>
+                                <image height='180px' width='180px' src='@m.Ms_img'></image>
+                            </div>
+                            <div class='hidee'>
+                                <h3>
+                                    @m.Ms_title
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+                }
+               
+            </ul>
+            </div>*@
+        </div>
+    <script src="~/Scripts/demo.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    </div>
+@Scripts.Render("~/bundles/jquery")

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+    <mvcSiteMapNode title="首页" controller="Home" action="Index">
+        <mvcSiteMapNode title="乐谱" controller="MusicScore" action="Index">
+          <mvcSiteMapNode title="name" controller="MusicScore" action="Display" preservedRouteParameters="name"/>
+          <!--<mvcSiteMapNode title="id" controller="MusicScore" action="Display" dynamicNodeProvider="Web.DynamicNodeProvider.AdminOrgSubDynamicNodeProvider,Web"/>-->
+          <mvcSiteMapNode title="发布乐谱" controller="MusicScore" action="Create" />
+          
+       </mvcSiteMapNode>
+    <mvcSiteMapNode title="发布视频" controller="Video" action="Create"/>
+    <mvcSiteMapNode title="发布帖子" controller="Posts" action="Create"/>
+    <mvcSiteMapNode title="注册" controller="LoginRegister" action="Register"/>
+    <mvcSiteMapNode title="登录" controller="LoginRegister" action="Login"/>
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

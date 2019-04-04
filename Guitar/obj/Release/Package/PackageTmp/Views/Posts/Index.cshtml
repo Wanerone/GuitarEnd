@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Guitar.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Po_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Po_content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Po_img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Po_addtime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Po_label)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.User_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Po_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Po_content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Po_img)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Po_addtime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Po_label)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.User_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Po_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Po_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Po_id })
+        </td>
+    </tr>
+}
+
+</table>

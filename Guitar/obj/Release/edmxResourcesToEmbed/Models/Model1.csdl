@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuitarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserA" Type="Int32" Nullable="false" />
+    <Property Name="UserB" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MusicScore">
+    <Key>
+      <PropertyRef Name="Ms_id" />
+    </Key>
+    <Property Name="Ms_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Ms_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Score" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ms_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ms_label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ms_addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_MusicScore_Users" FromRole="MusicScore" ToRole="Users" />
+    <NavigationProperty Name="MusicScoreCollection" Relationship="Self.FK_MusicScoreCollection_MusicScore" FromRole="MusicScore" ToRole="MusicScoreCollection" />
+    <NavigationProperty Name="MusicScoreComment" Relationship="Self.FK_MusicScoreComment_MusicScore" FromRole="MusicScore" ToRole="MusicScoreComment" />
+    <NavigationProperty Name="MusicScoreReply" Relationship="Self.FK_MusicScoreReply_MusicScore" FromRole="MusicScore" ToRole="MusicScoreReply" />
+  </EntityType>
+  <EntityType Name="MusicScoreCollection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Ms_id" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MusicScore" Relationship="Self.FK_MusicScoreCollection_MusicScore" FromRole="MusicScoreCollection" ToRole="MusicScore" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_MusicScoreCollection_Users" FromRole="MusicScoreCollection" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="MusicScoreComment">
+    <Key>
+      <PropertyRef Name="Ms_commentid" />
+    </Key>
+    <Property Name="Ms_commentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ms_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MusicScore" Relationship="Self.FK_MusicScoreComment_MusicScore" FromRole="MusicScoreComment" ToRole="MusicScore" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_MusicScoreComment_Users" FromRole="MusicScoreComment" ToRole="Users" />
+    <NavigationProperty Name="MusicScoreReply" Relationship="Self.FK_MusicScoreReply_MusicScoreComment" FromRole="MusicScoreComment" ToRole="MusicScoreReply" />
+  </EntityType>
+  <EntityType Name="MusicScoreReply">
+    <Key>
+      <PropertyRef Name="Ms_replyid" />
+    </Key>
+    <Property Name="Ms_replyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ms_commentid" Type="Int32" Nullable="false" />
+    <Property Name="Ms_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MusicScore" Relationship="Self.FK_MusicScoreReply_MusicScore" FromRole="MusicScoreReply" ToRole="MusicScore" />
+    <NavigationProperty Name="MusicScoreComment" Relationship="Self.FK_MusicScoreReply_MusicScoreComment" FromRole="MusicScoreReply" ToRole="MusicScoreComment" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_MusicScoreReply_Users" FromRole="MusicScoreReply" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="MusicScoreStatistics">
+    <Key>
+      <PropertyRef Name="Ms_id" />
+    </Key>
+    <Property Name="Ms_id" Type="Int32" Nullable="false" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Po_id" />
+    </Key>
+    <Property Name="Po_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Po_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Po_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Po_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Po_addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Po_label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Post_Users" FromRole="Post" ToRole="Users" />
+    <NavigationProperty Name="PostCollection" Relationship="Self.FK_PostCollection_Post" FromRole="Post" ToRole="PostCollection" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostComment_Post" FromRole="Post" ToRole="PostComment" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_Post" FromRole="Post" ToRole="PostReply" />
+  </EntityType>
+  <EntityType Name="PostCollection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Po_id" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostCollection_Post" FromRole="PostCollection" ToRole="Post" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_PostCollection_Users" FromRole="PostCollection" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="PostComment">
+    <Key>
+      <PropertyRef Name="Po_commentid" />
+    </Key>
+    <Property Name="Po_commentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Po_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostComment_Post" FromRole="PostComment" ToRole="Post" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_PostComment_Users" FromRole="PostComment" ToRole="Users" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_PostComment" FromRole="PostComment" ToRole="PostReply" />
+  </EntityType>
+  <EntityType Name="PostReply">
+    <Key>
+      <PropertyRef Name="Po_replyid" />
+    </Key>
+    <Property Name="Po_replyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Po_commentid" Type="Int32" Nullable="false" />
+    <Property Name="Po_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostReply_Post" FromRole="PostReply" ToRole="Post" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostReply_PostComment" FromRole="PostReply" ToRole="PostComment" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_PostReply_Users" FromRole="PostReply" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="PostStatistics">
+    <Key>
+      <PropertyRef Name="Po_id" />
+    </Key>
+    <Property Name="Po_id" Type="Int32" Nullable="false" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parent_comment_id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content_id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="content" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+    <Property Name="comment_date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="comment_time" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="t_customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nick_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_item">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="User_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="User_birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_addr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MusicScore" Relationship="Self.FK_MusicScore_Users" FromRole="Users" ToRole="MusicScore" />
+    <NavigationProperty Name="MusicScoreCollection" Relationship="Self.FK_MusicScoreCollection_Users" FromRole="Users" ToRole="MusicScoreCollection" />
+    <NavigationProperty Name="MusicScoreComment" Relationship="Self.FK_MusicScoreComment_Users" FromRole="Users" ToRole="MusicScoreComment" />
+    <NavigationProperty Name="MusicScoreReply" Relationship="Self.FK_MusicScoreReply_Users" FromRole="Users" ToRole="MusicScoreReply" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Post_Users" FromRole="Users" ToRole="Post" />
+    <NavigationProperty Name="PostCollection" Relationship="Self.FK_PostCollection_Users" FromRole="Users" ToRole="PostCollection" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostComment_Users" FromRole="Users" ToRole="PostComment" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_Users" FromRole="Users" ToRole="PostReply" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_Video_Users" FromRole="Users" ToRole="Video" />
+    <NavigationProperty Name="VideoCollection" Relationship="Self.FK_VideoCollection_Users" FromRole="Users" ToRole="VideoCollection" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_Users" FromRole="Users" ToRole="VideoComment" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_Users" FromRole="Users" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Vi_id" />
+    </Key>
+    <Property Name="Vi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Vi_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vi_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vi_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vi_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vi_label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vi_addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Video_Users" FromRole="Video" ToRole="Users" />
+    <NavigationProperty Name="VideoCollection" Relationship="Self.FK_VideoCollection_Video" FromRole="Video" ToRole="VideoCollection" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_Video" FromRole="Video" ToRole="VideoComment" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_Video" FromRole="Video" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="VideoCollection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_VideoCollection_Users" FromRole="VideoCollection" ToRole="Users" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoCollection_Video" FromRole="VideoCollection" ToRole="Video" />
+  </EntityType>
+  <EntityType Name="VideoComment">
+    <Key>
+      <PropertyRef Name="Vi_commentid" />
+    </Key>
+    <Property Name="Vi_commentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_VideoComment_Users" FromRole="VideoComment" ToRole="Users" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoComment_Video" FromRole="VideoComment" ToRole="Video" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_VideoComment" FromRole="VideoComment" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="VideoReply">
+    <Key>
+      <PropertyRef Name="Vi_replyid" />
+    </Key>
+    <Property Name="Vi_replyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_commentid" Type="Int32" Nullable="false" />
+    <Property Name="Vi_id" Type="Int32" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Addtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_VideoReply_Users" FromRole="VideoReply" ToRole="Users" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoReply_Video" FromRole="VideoReply" ToRole="Video" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoReply_VideoComment" FromRole="VideoReply" ToRole="VideoComment" />
+  </EntityType>
+  <EntityType Name="VideoStatistics">
+    <Key>
+      <PropertyRef Name="Vi_id" />
+      <PropertyRef Name="ReadCount" />
+      <PropertyRef Name="Collection" />
+    </Key>
+    <Property Name="Vi_id" Type="Int32" Nullable="false" />
+    <Property Name="ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="Collection" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MusicScore_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MusicScore" Type="Self.MusicScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="MusicScore">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreCollection_MusicScore">
+    <End Role="MusicScore" Type="Self.MusicScore" Multiplicity="1" />
+    <End Role="MusicScoreCollection" Type="Self.MusicScoreCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusicScore">
+        <PropertyRef Name="Ms_id" />
+      </Principal>
+      <Dependent Role="MusicScoreCollection">
+        <PropertyRef Name="Ms_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreComment_MusicScore">
+    <End Role="MusicScore" Type="Self.MusicScore" Multiplicity="1" />
+    <End Role="MusicScoreComment" Type="Self.MusicScoreComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusicScore">
+        <PropertyRef Name="Ms_id" />
+      </Principal>
+      <Dependent Role="MusicScoreComment">
+        <PropertyRef Name="Ms_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreReply_MusicScore">
+    <End Role="MusicScore" Type="Self.MusicScore" Multiplicity="1" />
+    <End Role="MusicScoreReply" Type="Self.MusicScoreReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusicScore">
+        <PropertyRef Name="Ms_id" />
+      </Principal>
+      <Dependent Role="MusicScoreReply">
+        <PropertyRef Name="Ms_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreCollection_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MusicScoreCollection" Type="Self.MusicScoreCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="MusicScoreCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreComment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MusicScoreComment" Type="Self.MusicScoreComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="MusicScoreComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreReply_MusicScoreComment">
+    <End Role="MusicScoreComment" Type="Self.MusicScoreComment" Multiplicity="1" />
+    <End Role="MusicScoreReply" Type="Self.MusicScoreReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MusicScoreComment">
+        <PropertyRef Name="Ms_commentid" />
+      </Principal>
+      <Dependent Role="MusicScoreReply">
+        <PropertyRef Name="Ms_commentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MusicScoreReply_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MusicScoreReply" Type="Self.MusicScoreReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="MusicScoreReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCollection_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="PostCollection" Type="Self.PostCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Po_id" />
+      </Principal>
+      <Dependent Role="PostCollection">
+        <PropertyRef Name="Po_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostComment_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Po_id" />
+      </Principal>
+      <Dependent Role="PostComment">
+        <PropertyRef Name="Po_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Po_id" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="Po_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCollection_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PostCollection" Type="Self.PostCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostComment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_PostComment">
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostComment">
+        <PropertyRef Name="Po_commentid" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="Po_commentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCollection_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="VideoCollection" Type="Self.VideoCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoComment_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCollection_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="VideoCollection" Type="Self.VideoCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Vi_id" />
+      </Principal>
+      <Dependent Role="VideoCollection">
+        <PropertyRef Name="Vi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoComment_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Vi_id" />
+      </Principal>
+      <Dependent Role="VideoComment">
+        <PropertyRef Name="Vi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Vi_id" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="Vi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_VideoComment">
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VideoComment">
+        <PropertyRef Name="Vi_commentid" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="Vi_commentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GuitarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Friend" EntityType="Self.Friend" />
+    <EntitySet Name="MusicScore" EntityType="Self.MusicScore" />
+    <EntitySet Name="MusicScoreCollection" EntityType="Self.MusicScoreCollection" />
+    <EntitySet Name="MusicScoreComment" EntityType="Self.MusicScoreComment" />
+    <EntitySet Name="MusicScoreReply" EntityType="Self.MusicScoreReply" />
+    <EntitySet Name="MusicScoreStatistics" EntityType="Self.MusicScoreStatistics" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="PostCollection" EntityType="Self.PostCollection" />
+    <EntitySet Name="PostComment" EntityType="Self.PostComment" />
+    <EntitySet Name="PostReply" EntityType="Self.PostReply" />
+    <EntitySet Name="PostStatistics" EntityType="Self.PostStatistics" />
+    <EntitySet Name="t_comment" EntityType="Self.t_comment" />
+    <EntitySet Name="t_customer" EntityType="Self.t_customer" />
+    <EntitySet Name="t_item" EntityType="Self.t_item" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Video" EntityType="Self.Video" />
+    <EntitySet Name="VideoCollection" EntityType="Self.VideoCollection" />
+    <EntitySet Name="VideoComment" EntityType="Self.VideoComment" />
+    <EntitySet Name="VideoReply" EntityType="Self.VideoReply" />
+    <EntitySet Name="VideoStatistics" EntityType="Self.VideoStatistics" />
+    <AssociationSet Name="FK_MusicScore_Users" Association="Self.FK_MusicScore_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MusicScore" EntitySet="MusicScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreCollection_MusicScore" Association="Self.FK_MusicScoreCollection_MusicScore">
+      <End Role="MusicScore" EntitySet="MusicScore" />
+      <End Role="MusicScoreCollection" EntitySet="MusicScoreCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreComment_MusicScore" Association="Self.FK_MusicScoreComment_MusicScore">
+      <End Role="MusicScore" EntitySet="MusicScore" />
+      <End Role="MusicScoreComment" EntitySet="MusicScoreComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreReply_MusicScore" Association="Self.FK_MusicScoreReply_MusicScore">
+      <End Role="MusicScore" EntitySet="MusicScore" />
+      <End Role="MusicScoreReply" EntitySet="MusicScoreReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreCollection_Users" Association="Self.FK_MusicScoreCollection_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MusicScoreCollection" EntitySet="MusicScoreCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreComment_Users" Association="Self.FK_MusicScoreComment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MusicScoreComment" EntitySet="MusicScoreComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreReply_MusicScoreComment" Association="Self.FK_MusicScoreReply_MusicScoreComment">
+      <End Role="MusicScoreComment" EntitySet="MusicScoreComment" />
+      <End Role="MusicScoreReply" EntitySet="MusicScoreReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MusicScoreReply_Users" Association="Self.FK_MusicScoreReply_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MusicScoreReply" EntitySet="MusicScoreReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Users" Association="Self.FK_Post_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCollection_Post" Association="Self.FK_PostCollection_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostCollection" EntitySet="PostCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostComment_Post" Association="Self.FK_PostComment_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostComment" EntitySet="PostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_Post" Association="Self.FK_PostReply_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCollection_Users" Association="Self.FK_PostCollection_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PostCollection" EntitySet="PostCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostComment_Users" Association="Self.FK_PostComment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PostComment" EntitySet="PostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_PostComment" Association="Self.FK_PostReply_PostComment">
+      <End Role="PostComment" EntitySet="PostComment" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_Users" Association="Self.FK_PostReply_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Users" Association="Self.FK_Video_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCollection_Users" Association="Self.FK_VideoCollection_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VideoCollection" EntitySet="VideoCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoComment_Users" Association="Self.FK_VideoComment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VideoComment" EntitySet="VideoComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_Users" Association="Self.FK_VideoReply_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCollection_Video" Association="Self.FK_VideoCollection_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoCollection" EntitySet="VideoCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoComment_Video" Association="Self.FK_VideoComment_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoComment" EntitySet="VideoComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_Video" Association="Self.FK_VideoReply_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_VideoComment" Association="Self.FK_VideoReply_VideoComment">
+      <End Role="VideoComment" EntitySet="VideoComment" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,111 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model Webdiyer.WebControls.Mvc.PagedList<Guitar.ViewModel.VideoUserViewModel>
+@using Webdiyer.WebControls.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+    body {
+        background: #f5f5f5 !important;
+    }
+
+    .video-list {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .videoss {
+        margin-top: 30px;
+    }
+
+    .video-list .video-item {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background: #fff;
+    }
+
+    .video-list .video-item-lt a {
+        position: static;
+        display: block;
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item-lt img {
+        max-width: 100%;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        height:100.8px
+    }
+
+    a img {
+        border: none;
+    }
+
+    .video-list .video-item-lt {
+        position: relative;
+        width: 180px;
+        overflow: hidden;
+    }
+
+    .video-list .video-item-rb {
+        flex: 1;
+        padding: 5px 15px;
+        overflow: hidden;
+    }
+
+        .video-list .video-item-rb:hover {
+            box-shadow: 0 0 8px rgba(64,64,64,.4);
+        }
+
+    .video-list .video-item .text-title {
+        line-height: 1.5;
+        max-height: 3rem;
+    }
+
+    .video-list .video-item a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item .text-block {
+        line-height: 1.6rem;
+        overflow: hidden;
+    }
+
+    .text-block {
+        display: block;
+        width: 100%;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .text-artist {
+        opacity: .7;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .description {
+        opacity: .7;
+        height: 1.5rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+<h2>全部</h2>
+<div id="video">
+    @Html.Partial("_Index1",Model)
+</div>
+@section scripts{@{Html.RegisterMvcPagerScriptResource();}}

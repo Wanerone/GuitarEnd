@@ -1,0 +1,183 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model  Guitar.ViewModel.UsersViewModel
+@using Webdiyer.WebControls.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<style>
+    body {
+        background: #f5f5f5 !important;
+    }
+    .pan{
+        margin-top:20px;
+    }
+    .icon{
+        float:left;
+        width:auto;
+        height:auto;
+    }
+    .icon img{
+    max-width: 120px;
+    border-radius: 3px;
+    }
+    .usetext{
+     float:left;
+     margin-left:20px;
+    }
+    .usename{
+     display: flex;
+    flex-wrap: nowrap;
+    }
+    .usetext p{
+        font-size:15px;
+    }
+    .usetext p a{
+        font-size:17px;
+        color:#8ea6b4;
+        text-decoration:none;
+    }
+    .usebu{
+        width:60px;
+    }
+    .cont{
+        background-color:#e7e6fc;
+    }
+     .video-list {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .videoss {
+        margin-top: 30px;
+    }
+
+    .video-list .video-item {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background: #fff;
+    }
+
+    .video-list .video-item-lt a {
+        position: static;
+        display: block;
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item-lt img {
+        max-width: 100%;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        height:100.8px
+    }
+
+    a img {
+        border: none;
+    }
+
+    .video-list .video-item-lt {
+        position: relative;
+        width: 180px;
+        overflow: hidden;
+    }
+
+    .video-list .video-item-rb {
+        flex: 1;
+        padding: 5px 15px;
+        overflow: hidden;
+    }
+
+        .video-list .video-item-rb:hover {
+            box-shadow: 0 0 8px rgba(64,64,64,.4);
+        }
+
+    .video-list .video-item .text-title {
+        line-height: 1.5;
+        max-height: 3rem;
+    }
+
+    .video-list .video-item a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item .text-block {
+        line-height: 1.6rem;
+        overflow: hidden;
+    }
+
+    .text-block {
+        display: block;
+        width: 100%;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .text-artist {
+        opacity: .7;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .description {
+        opacity: .7;
+        height: 1.5rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="panel panel-default pan">
+    <div class="panel-body">
+        <div class="icon"><img src="@Model.Us.User_img" /></div>
+        <div class="usetext">
+            <div class="usename"><p>@Model.Us.User_name</p></div>
+            <p><a>签名:</a>@Model.Us.User_sign</p>
+            <div class="usebu"><button type="button" class="btn btn-primary btn-block">关注</button></div>
+        </div>
+    </div>
+    <div class="panel-footer">乐谱:@ViewBag.mscount  视频:@ViewBag.vicount   帖子:@ViewBag.pocount</div>
+</div>
+<div class="cont">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                Ta的乐谱
+            </a>
+        </li>
+        <li><a href="#ios" data-toggle="tab">Ta的视频</a></li>
+        <li><a href="#ios2" data-toggle="tab">Ta的帖子</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            <div id="articles">
+                @Html.Partial("_AjaxArticles1",Model.MS)
+            </div>
+            
+        </div>
+        <div class="tab-pane fade" id="ios">
+            <div id="articles2">
+                @Html.Partial("_AjaxArticles2", Model.VO)
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ios2">
+            <div id="articles3">
+                @Html.Partial("_AjaxArticles3", Model.PO)
+            </div>
+        </div>
+    </div>
+    @section scripts{@{Html.RegisterMvcPagerScriptResource();}}
+</div>
+
+

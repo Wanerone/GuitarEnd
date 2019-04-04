@@ -1,0 +1,73 @@
+﻿@model Guitar.Models.Post
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Po_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Po_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Po_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Po_content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Po_img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Po_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Po_addtime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Po_addtime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Po_label)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Po_label)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.User_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.User_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

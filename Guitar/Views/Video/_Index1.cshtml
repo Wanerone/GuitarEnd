@@ -1,0 +1,15 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Guitar.ViewModel.VideoUserViewModel>
+@{ Html.RenderPartial("_Index2"); }
+<div class="row">
+    <div class="col-xs-8">
+        @Ajax.Pager(Model, new PagerOptions { FirstPageText = "首页", LastPageText = "尾页", NextPageText = ">", PrevPageText = "<", PageIndexParameterName = "id", NumericPagerItemCount = 5, ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>", PageIndexBoxId = "pageIndexBox" }).Options(o => o.AddRouteValue("target", "video")).AjaxOptions(a => a.SetUpdateTargetId("video"))
+    </div>
+    <div class="col-xs-4">
+        <div class="input-group" style="margin:20px 0">
+            <span class="input-group-addon">转到第</span>
+            <select id="pageIndexBox" class="form-control input-sm"></select>
+            <span class="input-group-addon">页</span>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,735 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model Guitar.ViewModel.VideoDetailsViewModel
+@using Webdiyer.WebControls.Mvc;
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<link href="~/Content/plyr.css" rel="stylesheet" />
+<script src="~/Scripts/plyr.js"></script>
+<link href="~/Content/style.css" rel="stylesheet" />
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+    /* 所有class为menu的div中的ul样式 */
+    div.menu ul {
+        list-style: none; /* 去掉ul前面的符号 */
+        margin: 0px; /* 与外界元素的距离为0 */
+        padding: 0px; /* 与内部元素的距离为0 */
+        width: auto; /* 宽度根据元素内容调整 */
+    }
+        /* 所有class为menu的div中的ul中的li样式 */
+        div.menu ul li {
+            float: left; /* 向左漂移，将竖排变为横排 */
+        }
+
+            div.menu ul li a, div.menu ul li a:visited {
+                cursor: pointer;
+                display: block; 
+                line-height: 1.35em; /* 行高 */
+                padding: 4px 4px; /* 内部填充的距离 */
+                text-decoration: none;
+                white-space: nowrap; 
+            }
+
+                div.menu ul li a:hover {
+                    background-color: #bfcbd6; /* 背景色 */
+                    color: #465c71; /* 文字颜色 */
+                    text-decoration: none; /* 不显示超链接下划线 */
+                }
+
+                div.menu ul li a:active {
+                    background-color: #465c71; /* 背景色 */
+                    color: #cfdbe6; /* 文字颜色 */
+                    text-decoration: none; /* 不显示超链接下划线 */
+                }
+
+    .m {
+        width: 847px;
+        margin-bottom: 15px;
+    }
+
+
+    .edimg {
+        width: 100px;
+        /*height:120px;*/
+        float: left;
+    }
+
+        .edimg img {
+            margin-bottom: 10px;
+        }
+
+    .infos {
+        /*width: 200px;*/
+        float: left;
+        margin-left: 10px;
+    }
+
+    .i1 {
+        width: 100%;
+        height: 30px;
+        margin: 12px 16px;
+    }
+
+        .i1 a {
+            font-size: 15px;
+            text-decoration: none;
+            color: #666666;
+        }
+
+    .i2 {
+        width: 150px;
+        color: #666;
+    }
+
+        .i2 table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+            empty-cells: show;
+            border-collapse: collapse;
+            display: table;
+        }
+
+        .i2 tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+
+        .i2 tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+
+        .i2 th {
+            border-right: 1px solid #CCC;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .i2 p {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .i2 a {
+            text-decoration: none;
+        }
+
+        .i2 td {
+            text-align: center;
+        }
+
+    .userinfo {
+        /*padding-top: 84px;*/
+        margin-bottom: 15px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .panel {
+        margin-bottom: 15px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .panel-h {
+        padding: 10px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    .panel-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.3rem;
+        font-weight: normal;
+        color: inherit;
+    }
+
+    .panel-c {
+        padding: 15px;
+    }
+
+    .video-grid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+        .video-grid .row {
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+    .video-item {
+        margin-bottom: 15px;
+        background: #fff;
+    }
+
+    .video-item-lt {
+        position: relative;
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .video-grid .video-item-lt a {
+        position: static;
+        display: block;
+        color: #333 !important;
+    }
+
+    .video-grid .video-item-lt img {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+    }
+
+    .video-grid .video-item:hover {
+        box-shadow: 0 0 8px rgba(64,64,64,.4);
+    }
+
+    .video-grid .video-item-rb {
+        padding: 6px 8px;
+    }
+
+    .video-grid .video-item .text-title {
+        line-height: 1.5;
+        overflow: hidden;
+    }
+
+    .video-grid .video-item a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .text-block {
+        display: block;
+        width: 100%;
+    }
+
+    .pl1 {
+        width: 50px;
+        float: left;
+        margin: 25px 40px;
+    }
+
+    .pl2 {
+        width: 50px;
+        float: left;
+        margin-right: 5px;
+    }
+
+    .pl3 {
+        float: left;
+        margin-right: 50px;
+    }
+
+    .pl11 {
+        opacity: 0.7;
+    }
+
+    .pl22 {
+        font-weight: bold;
+        display: block;
+        margin-top: 5px;
+    }
+
+     .pinlun {
+        margin-top: 40px;
+    }
+
+        .pinlun a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .pinlun table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+        }
+
+    .ta1 {
+        width: 130px;
+        border-right: none;
+        overflow: hidden;
+        vertical-align: top;
+    }
+
+    .taaa img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .taimg {
+        margin: 0 20px 0 20px;
+    }
+
+    .taname {
+        margin: 5px 0;
+        padding: 0;
+        height: auto;
+        text-align: center;
+        border-bottom: none;
+        font-size: 14px;
+        overflow: hidden;
+        color: #369;
+    }
+
+    .ta2 {
+        padding: 20px;
+        /*background-color: #F5F5F5;*/
+        background-color: #DDDDDD;
+        border-radius: 5px;
+        vertical-align: top;
+    }
+
+    .textera {
+        padding: 4px;
+    }
+
+    .textarea {
+        width: 100%;
+        height: 100px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabaio {
+        margin: 4px;
+    }
+
+    .taa1 {
+        color: #999;
+    }
+
+    .taa2 {
+        margin: 10px 0px;
+        min-height: 60px;
+        font-size: 14px;
+    }
+    .huifu a {
+        text-decoration: none;
+        cursor: pointer;
+        height: 20px;
+    }
+
+    .huifui1 {
+        position: relative;
+        margin: 5px -20px 0;
+        padding: 10px 20px;
+        background: #C1C1C1;
+        border-radius: 0 0 5px 5px;
+        border-top: 1px solid #DFDFDF;
+    }
+
+        .huifui1 dl {
+            border-bottom: 1px dashed #DFDFDF;
+        }
+
+    .hui1 {
+        zoom: 1;
+    }
+
+    .huiimg {
+        width: 48px;
+        height: 48px;
+        float: left;
+    }
+
+    .huiother {
+        float: left;
+        margin-left: 10px;
+    }
+    .r1 {
+        color: #999;
+        font-size: 14px;
+    }
+
+        .r1 a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .r2 {
+        min-height: 28px;
+    }
+
+    .mm {
+        margin: 10px 0px;
+    }
+
+        .mm a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .myreply {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: none;
+    }
+
+    .myimg {
+        width: 48px;
+        height: 48px;
+        display: inline;
+        float: left;
+        width: 5%;
+    }
+
+        .myimg img {
+            border-radius: 5px;
+        }
+
+    .mycontent {
+        width: 80%;
+        float: left;
+        padding: 0px 10px;
+    }
+
+    .textarea2 {
+        width: 100%;
+        height: 48px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabiao2 {
+        padding-top: 4px;
+    }
+</style>
+<p></p>
+<p></p>
+<div class="container" style="margin-top:10px;">
+    @*<div class="menu">
+        <ul style="">
+            <li><a>首页</a></li>
+            <li><a>></a></li>
+            <li><a>视频</a></li>
+            <li><a>></a></li>
+            <li><a style="color:#000000">67474</a></li>
+        </ul>
+    </div>*@
+    <br style="clear:both;">
+    <p></p>
+    <h3>@Model.Vid.Vi_title</h3>
+    <input type="hidden" value="@Model.Vid.Vi_id" class="Vi_id" />
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div class="m">
+                <video poster="vs.png" controls>
+                    <source src="@Model.Vid.Vi_url" type="video/mp4">
+                    <!-- <source src="path/to/video.webm" type="video/webm">-->
+                    <!-- Captions are optional -->
+                </video>
+                <script>plyr.setup();</script>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pl1">
+                        <span class="pl11">播放</span>
+                        <span class="pl22">@Model.Vid.ReadCount</span>
+                    </div>
+                    <div class="pl1">
+                        <span class="pl11">评论</span>
+                        <span class="pl22">0</span>
+                    </div>
+                    @*<div class="pl2">
+                              <img src="~/Images/收藏.png"  class="img-responsive" width="45" height="45"/>
+                        </div>
+                        <div class="pl1">
+                            <span class="pl11">评论</span>
+                            <span class="pl22">23</span>
+                        </div>*@
+                    
+                    <div class="pl3">
+
+                        <div class="feed" id="feed1">
+                        @using (Ajax.BeginForm("Collection", "Video", new AjaxOptions { HttpMethod = "Post",UpdateTargetId = "mei" }, new { id = "colle" }))
+                        {
+                           <input type="hidden" value="@Model.Vid.Vi_id" id="vid" name="vid" />
+                            <div class="heart " id="like1" rel="@ViewBag.rel"><a href="javascript:document.getElementById('colle').submit()"></a></div>
+                            
+                            <div class="likeCount" id="likeCount1">@Model.Vid.Collection</div>
+                            }
+                        </div>
+                        <lable id="mei" style="display:none"></lable>
+                        <br style="clear:both;">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        简介
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    @Model.Vid.Vi_description
+                    <p></p>
+                    @*标签: 吉他弹唱 六层楼 宋冬野 完形吉他*@
+                </div>
+            </div>
+            <div class="pinlun">
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td class="ta1 taaa">
+                                @if (Session["User_name"] != null)
+                                {
+                                    <div class="taimg">
+                                        @*<img src="~/Images/head.jpg" class="img-responsive img-rounded" />*@
+                                        <img src="@Session["User_img"]" class="img-responsive img-rounded" />
+                                    </div>
+                                    <div class="taname">@Session["User_name"]</div>
+                                    @*<div class="taname">慧然肯来</div>*@
+                                }
+                                else
+                                {
+                                    <img src="~/Images/headimg/head.jpg" class="img-responsive img-rounded" />
+                                }
+                            </td>
+                            <td class="ta2">
+                                @using (Ajax.BeginForm("Comment", "Video",new AjaxOptions{HttpMethod = "Post",UpdateTargetId = "PLhidden"}))
+                                {
+                                    <div class="textera">
+                                        <textarea class="textarea" name="pingluntextarea"></textarea>
+                                    </div>
+                                    <input type="hidden" name="Vi_id1" value="@Model.Vid.Vi_id" />
+                                    <div class="fabaio">
+                                        <input value="发表评论" class="btn btn-info" type="submit" id="queding" />
+                                    </div>
+                                }
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <lable id="PLhidden" style="display: none;"></lable>
+            <div id="articles">
+                @*@{Html.RenderAction("GetAllComment");}*@
+                @*@{Html.RenderPartial("GetAllComment",Model.msc11);}*@
+                @Html.Partial("_details1", Model.Vidcomment)
+            </div>
+            
+        </div>
+        <div class="col-lg-3 ">
+            <aside>
+                <div class="userinfo">
+                    <div class="edimg">
+                        <a href="@Url.Action("Index","Users", new { id=@Model.Us.User_id })"><img src="@Model.Us.User_img" class="img-responsive img-rounded" /></a>
+                        @using (Ajax.BeginForm("Guanzhu", "Video", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "mei1" }))
+                        {
+                            <input type="hidden" id="User_id" name="User_id" value="@Model.Vid.User_id" />
+                            <input type="submit" id="guanzhu" class="btn btn-primary btn-block" value="@ViewBag.dis" />
+                        }
+                        <lable id="mei1" style="display:none"></lable>
+                    </div>
+                    <div class="infos">
+                        <div class="i1">
+                            <a href="@Url.Action("Index","Users", new { id=@Model.Us.User_id })">@Model.Us.User_name</a>
+                        </div>
+                        <div class="i2">
+                            <table cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <p><a href="">2</a></p>曲谱
+                                        </th>
+                                        <th>
+                                            <p><a rel="nofollow" href="">2</a></p>好友
+                                        </th>
+                                        <td><p><a href="">8</a></p>帖子</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br style="clear:both;">
+                </div>
+                <div style="margin-top:20px;margin-bottom: 15px;">
+                    <img src="~/Images/addd.jpg" width="260" height="260" class="img-responsive" />
+                </div>
+                <div class="panel">
+                    <div class="panel-h">
+                        <h2 class="panel-title">相关视频</h2>
+                    </div>
+                    <div class="panel-c">
+                        <div class="video-grid">
+                            <div class="row">
+                                @foreach (Video p in Model.Vid1)
+                                {
+                                    <div class="col-lg-12 col-md-12 col-xs-6">
+                                        <div class="video-item">
+                                            <div class="video-item-lt">
+                                                <a href=""><img src="@p.Vi_img" alt="@p.Vi_title"></a>
+                                            </div>
+                                            <div class="video-item-rb">
+                                                <div class="text-block text-title">
+                                                    <a href="" title="">@p.Vi_title</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                               
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+    </div>
+
+
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        if ($(".heart").attr("rel") == 'unlike') {
+            $(".heart").addClass("heartAnimation").attr("rel", "unlike");
+        }
+        else {
+
+        }
+
+
+        $(".aclick a").click(function () {
+            $(".myreply").toggle();
+        });
+
+
+        $("#guanzhu").click(function () {
+            var mei1 = $("#mei1").text();
+            if (mei1 == "a") {
+                alert('不能关注自己!');
+            }
+            else if (mei1 == "b") {
+                $(this).val('已关注');
+                alert('关注成功!');
+            }
+            else if (mei1 == "c") {
+                alert('关注失败!');
+            }
+            else if(mei1=="d") {
+                $(this).val('关注');
+                alert('取消关注成功!');
+            }
+            else if(mei1=="e") {
+                alert('请先登录!');
+            }
+        });
+
+        $('body').on("click", '.heart', function () {
+            var A = $(this).attr("id");
+            var B = A.split("like");
+            var messageID = B[1];
+            var C = parseInt($("#likeCount" + messageID).html());
+            $(this).css("background-position", "")
+            var D = $(this).attr("rel");
+
+            if (D === 'like') {
+                $("#likeCount" + messageID).html(C + 1);
+                $(this).addClass("heartAnimation").attr("rel", "unlike");  
+            }
+            else {
+                $("#likeCount" + messageID).html(C - 1);
+                $(this).removeClass("heartAnimation").attr("rel", "like");
+                $(this).css("background-position", "left");                
+            }
+            $("#colle").submit();
+            //$.ajax({
+            //    type: "post",
+            //    url: "/Video/Collection",
+            //    contentType: "application/json",
+            //    data: {},
+            //    dataType: 'json',
+            //    success: function (result) {
+            //        $(".zannum").html(result);
+            //    }
+            //});
+        });
+
+        $("#queding").click(function () { //提交评论                   
+            var time = setInterval
+            clearInterval(time);
+            setTimeout(function () {
+                var plHidden = $("#PLhidden").text();
+                if (plHidden == "aa") {
+                    //$.ajax({
+                    //    type: "post",
+                    //    url: "/MusicScore/MsComment",
+                    //    data: { Ms_id: $(".Ms_id").val()},
+                    //    success: function (data) {
+                    //        $("#articles").html(data);
+                    //    }
+                    //});
+                    alert("评论成功！");
+                    location.reload(true);
+                }
+                else if (plHidden == "nn") {
+                    alert('请先登录！');
+                }
+                else if (plHidden == "kong") {
+                    alert('评论不能为空！');
+                }
+               
+
+            }, 1000);
+
+        });
+    });
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/Video/AddClick",
+            data: { ViId: $(".Vi_id").val() },
+            success: function (data) {
+
+                //alert(data);
+
+            }
+        });
+    });
+    
+</script>
+@section scripts{
+    @{Html.RegisterMvcPagerScriptResource();}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }

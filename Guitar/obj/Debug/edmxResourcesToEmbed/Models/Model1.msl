@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuitarModelStoreContainer" CdmEntityContainer="GuitarEntities">
+    <EntitySetMapping Name="Friend">
+      <EntityTypeMapping TypeName="GuitarModel.Friend">
+        <MappingFragment StoreEntitySet="Friend">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserA" ColumnName="UserA" />
+          <ScalarProperty Name="UserB" ColumnName="UserB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicScore">
+      <EntityTypeMapping TypeName="GuitarModel.MusicScore">
+        <MappingFragment StoreEntitySet="MusicScore">
+          <ScalarProperty Name="Ms_id" ColumnName="Ms_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Ms_title" ColumnName="Ms_title" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Ms_img" ColumnName="Ms_img" />
+          <ScalarProperty Name="Ms_label" ColumnName="Ms_label" />
+          <ScalarProperty Name="Ms_addtime" ColumnName="Ms_addtime" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicScoreCollection">
+      <EntityTypeMapping TypeName="GuitarModel.MusicScoreCollection">
+        <MappingFragment StoreEntitySet="MusicScoreCollection">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Ms_id" ColumnName="Ms_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicScoreComment">
+      <EntityTypeMapping TypeName="GuitarModel.MusicScoreComment">
+        <MappingFragment StoreEntitySet="MusicScoreComment">
+          <ScalarProperty Name="Ms_commentid" ColumnName="Ms_commentid" />
+          <ScalarProperty Name="Ms_id" ColumnName="Ms_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicScoreReply">
+      <EntityTypeMapping TypeName="GuitarModel.MusicScoreReply">
+        <MappingFragment StoreEntitySet="MusicScoreReply">
+          <ScalarProperty Name="Ms_replyid" ColumnName="Ms_replyid" />
+          <ScalarProperty Name="Ms_commentid" ColumnName="Ms_commentid" />
+          <ScalarProperty Name="Ms_id" ColumnName="Ms_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicScoreStatistics">
+      <EntityTypeMapping TypeName="GuitarModel.MusicScoreStatistics">
+        <MappingFragment StoreEntitySet="MusicScoreStatistics">
+          <ScalarProperty Name="Ms_id" ColumnName="Ms_id" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="GuitarModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="Po_id" ColumnName="Po_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Po_title" ColumnName="Po_title" />
+          <ScalarProperty Name="Po_content" ColumnName="Po_content" />
+          <ScalarProperty Name="Po_img" ColumnName="Po_img" />
+          <ScalarProperty Name="Po_addtime" ColumnName="Po_addtime" />
+          <ScalarProperty Name="Po_label" ColumnName="Po_label" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostCollection">
+      <EntityTypeMapping TypeName="GuitarModel.PostCollection">
+        <MappingFragment StoreEntitySet="PostCollection">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Po_id" ColumnName="Po_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostComment">
+      <EntityTypeMapping TypeName="GuitarModel.PostComment">
+        <MappingFragment StoreEntitySet="PostComment">
+          <ScalarProperty Name="Po_commentid" ColumnName="Po_commentid" />
+          <ScalarProperty Name="Po_id" ColumnName="Po_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostReply">
+      <EntityTypeMapping TypeName="GuitarModel.PostReply">
+        <MappingFragment StoreEntitySet="PostReply">
+          <ScalarProperty Name="Po_replyid" ColumnName="Po_replyid" />
+          <ScalarProperty Name="Po_commentid" ColumnName="Po_commentid" />
+          <ScalarProperty Name="Po_id" ColumnName="Po_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostStatistics">
+      <EntityTypeMapping TypeName="GuitarModel.PostStatistics">
+        <MappingFragment StoreEntitySet="PostStatistics">
+          <ScalarProperty Name="Po_id" ColumnName="Po_id" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_comment">
+      <EntityTypeMapping TypeName="GuitarModel.t_comment">
+        <MappingFragment StoreEntitySet="t_comment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="parent_comment_id" ColumnName="parent_comment_id" />
+          <ScalarProperty Name="content_id" ColumnName="content_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+          <ScalarProperty Name="comment_time" ColumnName="comment_time" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_customer">
+      <EntityTypeMapping TypeName="GuitarModel.t_customer">
+        <MappingFragment StoreEntitySet="t_customer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nick_name" ColumnName="nick_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_item">
+      <EntityTypeMapping TypeName="GuitarModel.t_item">
+        <MappingFragment StoreEntitySet="t_item">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="GuitarModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="User_name" ColumnName="User_name" />
+          <ScalarProperty Name="User_password" ColumnName="User_password" />
+          <ScalarProperty Name="User_email" ColumnName="User_email" />
+          <ScalarProperty Name="User_img" ColumnName="User_img" />
+          <ScalarProperty Name="User_addtime" ColumnName="User_addtime" />
+          <ScalarProperty Name="User_sex" ColumnName="User_sex" />
+          <ScalarProperty Name="User_birthday" ColumnName="User_birthday" />
+          <ScalarProperty Name="User_sign" ColumnName="User_sign" />
+          <ScalarProperty Name="User_addr" ColumnName="User_addr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Video">
+      <EntityTypeMapping TypeName="GuitarModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="Vi_id" ColumnName="Vi_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Vi_url" ColumnName="Vi_url" />
+          <ScalarProperty Name="Vi_title" ColumnName="Vi_title" />
+          <ScalarProperty Name="Vi_description" ColumnName="Vi_description" />
+          <ScalarProperty Name="Vi_img" ColumnName="Vi_img" />
+          <ScalarProperty Name="Vi_label" ColumnName="Vi_label" />
+          <ScalarProperty Name="Vi_addtime" ColumnName="Vi_addtime" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoCollection">
+      <EntityTypeMapping TypeName="GuitarModel.VideoCollection">
+        <MappingFragment StoreEntitySet="VideoCollection">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Vi_id" ColumnName="Vi_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoComment">
+      <EntityTypeMapping TypeName="GuitarModel.VideoComment">
+        <MappingFragment StoreEntitySet="VideoComment">
+          <ScalarProperty Name="Vi_commentid" ColumnName="Vi_commentid" />
+          <ScalarProperty Name="Vi_id" ColumnName="Vi_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoReply">
+      <EntityTypeMapping TypeName="GuitarModel.VideoReply">
+        <MappingFragment StoreEntitySet="VideoReply">
+          <ScalarProperty Name="Vi_replyid" ColumnName="Vi_replyid" />
+          <ScalarProperty Name="Vi_commentid" ColumnName="Vi_commentid" />
+          <ScalarProperty Name="Vi_id" ColumnName="Vi_id" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoStatistics">
+      <EntityTypeMapping TypeName="GuitarModel.VideoStatistics">
+        <MappingFragment StoreEntitySet="VideoStatistics">
+          <ScalarProperty Name="Vi_id" ColumnName="Vi_id" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

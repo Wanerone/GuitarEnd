@@ -1,0 +1,145 @@
+﻿@model Guitar.Models.Users
+@{
+    ViewBag.Title = "InfoSet";
+    Layout = "~/Views/Shared/_UserCenter.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/city.json.js"></script>
+<script src="~/Scripts/citySet.js"></script>
+<script src="~/Scripts/Popt.js"></script>
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap-fileinput.css" rel="stylesheet" />
+<script src="~/bootstrap-3.3.7-dist/js/bootstrap-fileinput.js"></script>
+<style>
+    #info{
+       background-color: #00a1d6;
+    }
+    .tou {
+        width: 100%;
+        height: 50px;
+        padding-left: 30px;
+        padding-top: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .tou span {
+            border-left: #ec6690 5px solid;
+            padding-left: 5px;
+            color: #00a1d6;
+            font-size: 18px;
+            cursor: default;
+        }
+
+
+    .styled {
+        border-radius: 5px;
+        width: 158px;
+        height: 25px;
+        padding: 0 24px 0 8px;
+        color: #fff;
+        background-color: #3d69f7;
+        font: 14px "微软雅黑";
+    }
+    .wrap{height:34px;border:0;position:relative;}
+.input{position:absolute;top:0;left:0;width:370px;margin:0;padding-left:5px;height:30px;line-height:30px;font-size:12px;border:1px solid #c9cacb;}
+s{position:absolute;top:1px;right:0;width:32px;height:32px;background:url("~/Images/arrow.png") no-repeat;}
+._citys { width: 370px; display: inline-block; border: 2px solid #eee; padding: 5px; position: relative;background-color:#e7eff3; }
+._citys span { color: #05920a; height: 15px; width: 15px; line-height: 15px; text-align: center; border-radius: 3px; position: absolute; right: 10px; top: 10px; border: 1px solid #05920a; cursor: pointer; }
+._citys0 { width: 95%; height: 34px; line-height: 34px; display: inline-block; border-bottom: 2px solid #05920a; padding: 0px 5px; font-size:14px; font-weight:bold; margin-left:6px; }
+._citys0 li { display: inline-block; line-height: 34px; font-size: 15px; color: #888; width: 80px; text-align: center; cursor: pointer; }
+._citys1 { width: 100%; display: inline-block; padding: 10px 0; }
+._citys1 a { width: 83px; height: 35px; display: inline-block; background-color: #f5f5f5; color: #666; margin-left: 6px; margin-top: 3px; line-height: 35px; text-align: center; cursor: pointer; font-size: 12px; border-radius: 5px; overflow: hidden; }
+._citys1 a:hover { color: #fff; background-color: #05920a; }
+.AreaS { background-color: #05920a !important; color: #fff !important; }
+</style>
+
+<div class="tou"><span>信息设置</span></div>
+<div class="xia">
+    @using (Html.BeginForm("SavaInfo", "Users", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+    <table class="table table-bordered">
+        @*<tr>
+            <td>@Html.LabelFor(model => model.User_id, "id", new { htmlAttributes = new { } })</td>
+            <td>
+
+                @Html.EditorFor(model => model.User_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User_id, "", new { @class = "text-danger" })
+            </td>
+        </tr>*@
+        <tr>
+            <td><h4>邮箱</h4></td>
+            <td>
+                @Model.User_email
+                @*@Html.EditorFor(model => model.User_email, new { htmlAttributes = new { @class = "form-control", @placeholder = "",@id="email" } })*@
+            </td>
+        </tr>
+        <tr>
+            @*<td>@Html.LabelFor(model => model.User_name,"昵称", new { htmlAttributes = new { } })</td>
+            <td>
+
+                @Html.EditorFor(model => model.User_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "" ,@id="usename"} })
+                @Html.ValidationMessageFor(model => model.User_name, "", new { @class = "text-danger" })
+            </td>*@
+            <td><h4>昵称</h4></td>
+            <td><input type="text" value="@{@Model.User_name.Trim();} " name="usename" id="usename" /></td>
+</tr>
+        @*<tr>
+            <td><h4>密码</h4></td>
+            <td>
+                @Html.EditorFor(model => model.User_password, new { htmlAttributes = new { @class = "form-control", @placeholder = "",@style="display:none;"} })
+                **********
+            </td>
+        </tr>*@
+        <tr>
+            <td><h4>性别</h4></td>
+            <td>
+                @*@Html.RadioButtonFor(model => model.User_sex, true, new { @id = "radio1", @name = "Status", @checked="checked" })
+                <label for="radio1">男</label>
+                @Html.RadioButtonFor(model => model.User_sex, false, new { @id = "radio2", @name = "Status" })
+                <label for="radio2">女</label>
+                @Html.ValidationMessageFor(model => model.User_sex, "", new { @class = "text-danger" })*@
+                <input list="browsers" name="browser" id="browser" value="@Model.User_sex" >
+                <datalist id="browsers">
+                    <option value="男">
+                    <option value="女">
+                    <option value="保密">
+                </datalist>
+            </td>
+        </tr>
+     
+        <tr>
+            <td><h4>出生日期</h4></td>
+            <td>
+                <input name="birthday" type="text" id="birthday" title="点击选择" onClick="javascript:ShowCalendar(this.id)" size="20">
+                <input type="button" name="Submit" value="选 择" onClick="javascript:ShowCalendar('birthday')">
+                <script src="~/Scripts/birth.js"></script>
+            </td>
+        </tr>
+        <tr>
+            <td><h4>住址</h4></td>
+            <td>
+                <div class="wrap"><input class="input" name="city" id="city" type="text" placeholder="请选择" autocomplete="off" readonly="true"><s></s></div>
+            </td>
+        </tr>
+        <tr>
+            <td><h4>个人说明</h4></td>
+            <td>
+                <input type="text" value="@Model.User_sign" name="sign" id="sign" class="form-control" />
+                @*@Html.TextAreaFor(model => model.User_sign, new { htmlAttributes = new { @class = "form-control",@id="sign" } })
+                @Html.ValidationMessageFor(model => model.User_sign, "", new { @class = "text-danger" })*@
+            </td>
+        </tr>
+        <tr><td></td><td><input type="submit" class="btn btn-info" value="更改" /></td></tr>
+    </table>
+    }
+</div>
+
+<script type="text/javascript">
+$("#city").click(function (e) {
+	SelCity(this,e);
+});
+$("s").click(function (e) {
+	SelCity(document.getElementById("city"),e);
+});
+</script>
+

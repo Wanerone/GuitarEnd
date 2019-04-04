@@ -1,0 +1,126 @@
+﻿@model Guitar.Models.Users
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@{
+    Html.EnableClientValidation();
+}
+@Styles.Render("~/Content/Login.css")
+@Scripts.Render("~/Scripts/Register.js")
+
+@Scripts.Render("~/Scripts/jquery-3.3.1.js")
+@Scripts.Render("~/Scripts/jquery.validate.js")
+<script src="~/Scripts/jquery.validate.js"></script>
+<style>
+    .content {
+        margin: 30px 0;
+    }
+
+    .login {
+        
+        margin: 30px;
+        height: 300px;
+    }
+    .loginimg{
+        margin:30px 0px;
+        width:100px;
+        height:100px;
+    }
+</style>
+<script>
+    $(function () {
+
+        // 为看不清楚绑定事件
+        $("#see").click(function () {
+            $("#validimg").attr("src", "@Url.Content("~/YZM/GetYZM?")" + Math.random());
+        });
+
+        // 为验证码绑定click与mouseover
+        $("#validimg").mouseover(function () {
+            $(this).css("cursor", "pointer");
+        }).click(function () {
+            $("#see").trigger("click");
+        });
+    });
+    function reloadcode() {
+        var verify = document.getElementById('validimg');
+        verify.setAttribute('src', '@Url.Content("/YZM/GetYZM?")' + Math.random());
+    }
+
+    function reloadcodes() {
+        var verify = document.getElementById('validimgs');
+        verify.setAttribute('src', '@Url.Content("/YZM/GetYZM?")' + Math.random());
+    }
+
+</script>
+<div class="container">
+
+<div class="loginimg"><img src="~/Images/登录.png" class="img-responsive" /></div>
+ <div class="login">
+    @using (Html.BeginForm("Login", "LoginRegister", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">邮箱号</label>
+            <div class="col-sm-6">
+                @Html.TextBoxFor(model => model.User_email, new { @class = "form-control", type = "text", id = "phonum", style = "width: 300px;" })
+                @Html.ValidationMessageFor(model => model.User_email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-6">
+                @Html.TextBoxFor(model => model.User_password, new { @class = "form-control", placeholder = "Password", type = "password", id = "txtpassword", style = "width: 300px;" })
+                @*<input type="password" style="width: 300px;" class="form-control" id="" placeholder="Password">*@
+                @Html.ValidationMessageFor(model => model.User_password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">验证码</label>
+            <div class="col-sm-6">
+                <div style="float: left;">
+                    <input style="width: 200px;" class="form-control" id="txtverifcode" name="txtverifcode" type="text">
+                    @*<input id="txtverifcode" name="txtverifcode" class="login_verifcode" placeholder="验证码" type="text" />*@
+                    @*<span id="codenameTip">*@
+
+                </div>
+                <div style="float: left;">
+                    <span id="txtverifcod"><img id="validimg" src="@Url.Action("GetYZM", "YZM")" alt="看不清，点击换一张" /><a style="text-decoration:none;cursor:pointer" id="see" onclick="reloadcode()">换一张</a></span>
+                    <span>@ViewBag.mess</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                @*@Html.CheckBoxFor(model => model)*@
+                @Html.RadioButtonFor(model => model.User_password, true, new { @id = "radio1", @name = "Status",  })
+                <label for="radio1">记住我</label>
+                @*<span>记住我</span>*@
+                <span style="padding-left:155px"><a style="text-decoration:none">忘记密码?</a></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                @*<button type="button" id="btnlogin" class="btn btn-primary">立即登录</button>*@
+                <input type="submit" id="btnlogin" class="btn btn-info" value="立即登录" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                <a style="text-decoration:none;" href="@Url.Action("Register","LoginRegister")">还没账号?立即注册</a> 
+            </div>
+        </div>
+    }
+
+</div>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -1,0 +1,73 @@
+﻿@model Guitar.Models.MusicScore
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MusicScore</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ms_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ms_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ms_img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ms_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ms_label)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ms_label)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ms_addtime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ms_addtime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.User_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.User_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

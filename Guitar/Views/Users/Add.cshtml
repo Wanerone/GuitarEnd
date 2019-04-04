@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@Styles.Render("~/Content/Login.css")
+@Scripts.Render("~/Scripts/Register.js")
+
+<div class="content">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                登录
+            </a>
+        </li>
+        <li><a href="#ios" data-toggle="tab">注册</a></li>
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+           <div class="login">
+               <form class="form-horizontal" role="form">
+                   <div class="form-group">
+                       <label class="col-sm-2 control-label">用户名</label>
+                       <div class="col-sm-6">
+                           <input style="width: 300px;" class="form-control" id="username">
+                           <span id="codenameTip"></span>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                       <div class="col-sm-6">
+                           <input type="password" style="width: 300px;" class="form-control" id="" placeholder="Password">
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                       <div class="col-sm-6">
+                           <input type="password" style="width: 300px;" class="form-control" id="" placeholder="Password">
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <label for="inputEmail3" class="col-sm-2 control-label">邮箱号</label>
+                       <div class="col-sm-6">
+                           <div style="float: left;">
+                               <input id="phonum" type="text" class="form-control" style="width: 300px;">
+                           </div>
+                           <div style="float: left;">
+                               <input class="btn btn-info" type="button" id="getcode" value="点击获取手机验证码" />
+                               <span id="telephonenameTip"></span>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label class="col-sm-2 control-label">验证码</label>
+                       <div class="col-sm-6">
+                           <input style="width: 300px;" class="form-control" id="codename">
+                           <span id="codenameTip"></span>
+                       </div>
+                   </div>
+
+                 
+
+                   <div class="form-group">
+                       <div class="col-sm-offset-2 col-sm-6">
+                           <button type="button" id="submit" class="btn btn-primary">立即注册</button>
+                       </div>
+                   </div>
+               </form>
+           </div>
+            
+        </div>
+        <div class="tab-pane fade" id="ios">
+            <p>
+                iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。
+            </p>
+        </div>
+
+    </div>
+</div>
+
+

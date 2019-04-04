@@ -1,0 +1,661 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model Guitar.ViewModel.MusicDetailsViewModel
+@using Webdiyer.WebControls.Mvc;
+@*@model Webdiyer.WebControls.Mvc.PagedList<Guitar.ViewModel.MusicDetailsViewModel>*@
+
+@{
+    ViewBag.Title = "Display";
+
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<style>
+    .loca {
+        margin: 50px 0px;
+        text-align: center;
+    }
+
+    .bt {
+        margin: 0px 20px;
+    }
+
+        .bt a {
+            color: #8EA6B4;
+            text-decoration: none;
+        }
+
+    .morehead {
+        margin: 30px 0px;
+        width: 100%;
+        clear: both;
+    }
+
+    .s1 {
+        float: right;
+    }
+
+        .s1 a {
+            color: #2c77ba;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .shili {
+        width: 180px;
+        float: left;
+        margin-right: 15px;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .morehead li .shia {
+        position: relative;
+        display: block;
+    }
+
+        .morehead li .shia img {
+            margin: 0;
+            width: 180px;
+            height: 110px;
+        }
+
+    .morehead li .shititle {
+        text-decoration: none;
+        color: #333;
+        width: 150px;
+        font-size: 15px;
+    }
+
+    .cl {
+        zoom: 1;
+    }
+
+        .cl:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+
+
+    #tabinfo_x {
+        width: 80%;
+        float: left;
+    }
+
+        #tabinfo_x span {
+            color: #666666;
+            font-size: 15px;
+        }
+
+        #tabinfo_x p {
+            margin: 0;
+            padding: 0;
+            display: block;
+            font-size: 20px;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+
+    .panel-title {
+        text-align: center;
+    }
+
+        .panel-title a {
+            text-decoration: none;
+        }
+
+    .edimg {
+        width: 100px;
+        /*height:120px;*/
+        float: left;
+    }
+
+        .edimg img {
+            margin-bottom: 10px;
+        }
+
+    .infos {
+        width: 200px;
+        float: left;
+        margin-left: 10px;
+    }
+
+    .i1 {
+        width: 100%;
+        height: 30px;
+        margin: 12px 16px;
+    }
+
+        .i1 a {
+            font-size: 15px;
+            text-decoration: none;
+            color: #666666;
+        }
+
+    .i2 {
+        width: 150px;
+        color: #666;
+    }
+
+        .i2 table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+            empty-cells: show;
+            border-collapse: collapse;
+            display: table;
+        }
+
+        .i2 tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+
+        .i2 tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+
+        .i2 th {
+            border-right: 1px solid #CCC;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .i2 p {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .i2 a {
+            text-decoration: none;
+        }
+
+        .i2 td {
+            text-align: center;
+        }
+
+    .image {
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .image img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+    .clearr {
+        clear: both;
+    }
+
+    .pinlun {
+        margin-top: 40px;
+    }
+
+        .pinlun a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .pinlun table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+        }
+
+    .ta1 {
+        width: 130px;
+        border-right: none;
+        overflow: hidden;
+        vertical-align: top;
+    }
+
+    .taaa img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .taimg {
+        margin: 0 20px 0 20px;
+    }
+
+    .taname {
+        margin: 5px 0;
+        padding: 0;
+        height: auto;
+        text-align: center;
+        border-bottom: none;
+        font-size: 14px;
+        overflow: hidden;
+        color: #369;
+    }
+
+    .ta2 {
+        padding: 20px;
+        /*background-color: #F5F5F5;*/
+        background-color: #DDDDDD;
+        border-radius: 5px;
+        vertical-align: top;
+    }
+
+    .textera {
+        padding: 4px;
+    }
+
+    .textarea {
+        width: 100%;
+        height: 100px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabaio {
+        margin: 4px;
+    }
+
+    .taa1 {
+        color: #999;
+    }
+
+    .taa2 {
+        margin: 10px 0px;
+        min-height: 60px;
+        font-size: 14px;
+    }
+
+    .huifu a {
+        text-decoration: none;
+        cursor: pointer;
+        height: 20px;
+    }
+
+    .huifui1 {
+        position: relative;
+        margin: 5px -20px 0;
+        padding: 10px 20px;
+        background: #C1C1C1;
+        border-radius: 0 0 5px 5px;
+        border-top: 1px solid #DFDFDF;
+    }
+
+        .huifui1 dl {
+            border-bottom: 1px dashed #DFDFDF;
+        }
+
+    .hui1 {
+        zoom: 1;
+    }
+
+    .huiimg {
+        width: 48px;
+        height: 48px;
+        float: left;
+    }
+
+    .huiother {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .r1 {
+        color: #999;
+        font-size: 14px;
+    }
+
+        .r1 a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .r2 {
+        min-height: 28px;
+    }
+
+    .m {
+        margin: 10px 0px;
+    }
+
+        .m a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .myreply {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: none;
+    }
+
+    .myimg {
+        width: 48px;
+        height: 48px;
+        display: inline;
+        float: left;
+        width: 5%;
+    }
+
+        .myimg img {
+            border-radius: 5px;
+        }
+
+    .mycontent {
+        width: 80%;
+        float: left;
+        padding: 0px 10px;
+    }
+
+    .textarea2 {
+        width: 100%;
+        height: 48px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabiao2 {
+        padding-top: 4px;
+    }
+
+    /* 所有class为menu的div中的ul样式 */
+div.menu ul
+{
+    list-style:none; /* 去掉ul前面的符号 */
+    margin: 0px; /* 与外界元素的距离为0 */
+    padding: 0px; /* 与内部元素的距离为0 */
+    width: auto; /* 宽度根据元素内容调整 */
+}
+/* 所有class为menu的div中的ul中的li样式 */
+div.menu ul li
+{
+    float:left; /* 向左漂移，将竖排变为横排 */
+}
+div.menu ul li a, div.menu ul li a:visited
+{
+    cursor:pointer;
+
+   
+    display: block; /* 此元素将显示为块级元素，此元素前后会带有换行符 */
+    line-height: 1.35em; /* 行高 */
+    padding: 4px 4px; /* 内部填充的距离 */
+    text-decoration: none; /* 不显示超链接下划线 */
+    white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
+}
+div.menu ul li a:hover
+{
+    background-color: #bfcbd6; /* 背景色 */
+    color: #465c71; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+div.menu ul li a:active
+{
+    background-color: #465c71; /* 背景色 */
+    color: #cfdbe6; /* 文字颜色 */
+    text-decoration: none; /* 不显示超链接下划线 */
+}
+</style>
+<p></p>
+
+<div class="container">
+    <div class="menu">
+        <ul style="">
+            <li><a>首页</a></li>
+            <li><a>></a></li>
+            <li><a>乐谱</a></li>
+            <li><a>></a></li>
+            <li><a style="color:#000000">@Model.MScore.Ms_title</a></li>
+        </ul>
+        </div>
+        <div class="image">
+            @Html.Raw(@Model.MScore.Score)
+            @*<img src="~/Images/head.jpg" class="img img-responsive"/>*@
+        </div>
+        @*@Ajax.ActionLink("收藏", "Collection", new AjaxOptions { UpdateTargetId = "collection", InsertionMode = InsertionMode.Replace,HttpMethod="get" });*@
+        <input type="hidden" name="Ms_id3" value="@Model.MScore.Ms_id" class="Ms_id" />
+
+        <div class="details">
+            <div class="loca">
+                <div class="btn btn-default bt" href="#">
+                    <i class="fa fa-eye" aria-hidden="true"></i>阅读 <a>@Model.MScore.ReadCount</a>
+                </div>
+
+                <div class="btn btn-default bt coll" href="#">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    @using (Html.BeginForm("Collection", "MusicScore", FormMethod.Post, new { id = "collection", }))
+                    {
+                        <input type="hidden" name="Ms_id4" value="@Model.MScore.Ms_id" />
+                        <a href="javascript:document.getElementById('collection').submit()" onclick="display()">收藏</a>
+                        <a>@Model.MScore.Collection</a>
+                    }
+
+                </div>
+                <div class="btn btn-default bt" href="#">
+                    <i class="fa fa-reply-all" aria-hidden="true"></i> 回复
+                </div>
+                <div class="btn btn-default bt" href="#">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i> 下载
+                </div>
+            </div>
+
+        </div>
+        <div class="morehead">
+            <h3>Ta的曲谱<span class="s1"><a>查看更多</a></span></h3>
+            <ul style="margin:0;padding:0;">
+                @foreach (MusicScore p in Model.MScore1)
+            {
+                    <li class="shili">
+                        <a class="shia"><img src="@p.Ms_img" class="img-responsive" /></a>
+                        <a class="shititle" target="_blank" href="">@p.Ms_title </a>
+                    </li>
+                }
+
+            </ul>
+            <div class="cl"></div>
+        </div>
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-info" style="width:60%;float:left;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseThree">
+                            吉他谱信息
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div id="tabinfo_x">
+                            <p>标题:<span>@Model.MScore.Ms_title</span></p>
+                            <p>
+                                标签:<span>@Model.MScore.Ms_label</span>
+                            </p>
+                            <p>
+                                创建时间:<span>@Model.MScore.Ms_addtime</span>
+                            </p>
+                            <p>
+                                描述:<span>Moderate干豆腐干豆腐更符合法规和法国法国恢复规划法规和法国恢复规划法规和法国恢复规划法规和</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-success" style="width:35%;float:right;margin:0px">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            作者信息
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div id="tabinfo_y">
+                            <div class="edimg">
+                                <img src="@Model.Us.User_img" class="img-responsive img-rounded" />
+                                <button type="button" class="btn btn-primary btn-block">关注</button>
+                            </div>
+                            <div class="infos">
+                                <div class="i1">
+                                    <a>@Model.Us.User_name</a>
+                                </div>
+                                <div class="i2">
+                                    <table cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <p><a href="">206</a></p>曲谱
+                                                </th>
+                                                <th>
+                                                    <p><a rel="nofollow" href="">25</a></p>好友
+                                                </th>
+                                                <td><p><a href="">8</a></p>帖子</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearr"></div>
+        <script type="text/javascript">
+            $(function () {
+                $('#collapseFour').collapse({
+                    toggle: false
+                })
+            });
+            $(function () { $('#collapseTwo').collapse('show') });
+            $(function () { $('#collapseThree').collapse('show') });
+            //$(function () { $('#collapseThree').collapse('toggle')});
+        </script>
+        <div class="pinlun">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="ta1 taaa">
+                            @if (Session["User_name"] != null)
+                            {
+                                <div class="taimg">
+                                    @*<img src="~/Images/head.jpg" class="img-responsive img-rounded" />*@
+                                    <img src="@Session["User_img"]" class="img-responsive img-rounded" />
+                                </div>
+                                <div class="taname">@Session["User_name"]</div>
+                                @*<div class="taname">慧然肯来</div>*@
+                            }
+                            else
+                            {
+                                <img src="~/Images/head.jpg" class="img-responsive img-rounded" />
+                            }
+                        </td>
+                        <td class="ta2">
+                            @*@using (Html.BeginForm("Comment", "MusicScore", FormMethod.Post, new { id = "pinglun", @class = "postbox" }))*@
+                            @*@using (Ajax.BeginForm("Comment", "MusicScore", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "PLhidden" }))*@
+@*@using (Ajax.BeginForm("Comment", "MusicScore", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "articles", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" } }))*@
+@using (Ajax.BeginForm("Comment", "MusicScore",
+                new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    //InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "PLhidden",
+                    //OnComplete = "ajaxComplete"
+                }))
+{
+                                <div class="textera">
+                                    <textarea class="textarea" name="pingluntextarea"></textarea>
+                                </div>
+                                <input type="hidden" name="Ms_id" value="@Model.MScore.Ms_id" />
+                                <div class="fabaio">
+                                    @*<a href="javascript:document.getElementById('pinglun').submit()" onclick="display()" class="btn btn-info">发表评论</a>*@
+                                    <input value="发表评论" class="btn btn-info" type="submit" id="queding"  />
+                                </div>
+                            }
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <lable id="PLhidden" style="display: none;"></lable>
+    <div id="articles">
+        @*@{Html.RenderAction("GetAllComment");}*@
+        @*@{Html.RenderPartial("GetAllComment",Model.msc11);}*@
+        @Html.Partial("_display1", Model.msc11)
+    </div>
+    @section scripts{@{Html.RegisterMvcPagerScriptResource();}}
+      
+
+
+    </div>
+<script>
+    $(document).ready(function () {
+        $(".aclick a").click(function () {
+            $(".myreply").toggle();
+        });
+    });
+
+    //$("#queding").click(function () {
+    //    $("#data").load("/MusicScore/GetAllComment", { "message": $("#txt").val() }, function () {
+    //        alert("提交成功");
+    //    });
+    //});
+
+        function ajaxComplete() {
+            alert("评论成功！");
+        }
+
+    $("#queding").click(function () { //提交评论                   
+        var time = setInterval 
+        clearInterval(time);     
+        setTimeout(function () {
+            var plHidden = $("#PLhidden").text();
+            if (plHidden == "aa") {
+                //$.ajax({
+                //    type: "post",
+                //    url: "/MusicScore/MsComment",
+                //    data: { Ms_id: $(".Ms_id").val()},
+                //    success: function (data) {
+                //        $("#articles").html(data);
+                //    }
+                //});
+                alert("评论成功！");
+                location.reload(true);
+            }
+            else if (plHidden == "kong") {
+                alert('评论不能为空！');
+            }
+            else {
+            }
+
+        }, 1000);
+
+    });
+</script>

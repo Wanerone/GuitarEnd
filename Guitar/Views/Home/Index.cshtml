@@ -1,0 +1,390 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model  Guitar.ViewModel.IndexViewModel
+@{
+    ViewBag.Title = "首页Guitar";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@Styles.Render("~/bootstrap-3.3.7-dist/css/bootstrap.min.css")
+@Scripts.Render("~/bootstrap-3.3.7-dist/js/bootstrap.min.js")
+@Styles.Render("~/font-awesome-4.7.0/css/font-awesome.min.css")
+@Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+@Scripts.Render("~/Scripts/lanrenzhijia.js")
+@Styles.Render("~/Content/lanrenzhijia.css")
+<link href="~/Content/port.css" rel="stylesheet" />
+<link href="~/Content/One.css" rel="stylesheet" />
+<script src="~/Scripts/One.js"></script>
+<style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .yuepu {
+        padding-top: 30px;
+        /*border:1px solid;*/
+        width: 100%;
+        height:auto;
+    }
+
+    .zi {
+        width: 100%;
+        height: 30px;
+        overflow: hidden;
+        margin: 5px;
+    }
+
+        .zi a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+            .zi a:hover {
+                color: #4c69d8;
+            }
+
+    .frame-tab {
+        border: 0;
+        margin-bottom: 1rem !important;
+    }
+
+    .cl {
+        zoom: 1;
+    }
+
+    .tab-title {
+        padding: 0;
+        width: 100% !important;
+        border: none;
+    }
+
+    .title {
+        padding: 0 10px;
+        height: 32px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 32px;
+        overflow: hidden;
+    }
+
+    .frame-tab .tab-title .titletext {
+        float: left;
+        margin: 0 10px;
+    }
+
+    .home-tab .titletext {
+        position: relative;
+        font-size: 1.6rem;
+        font-weight: normal;
+        margin: 0 !important;
+        margin-right: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+        .home-tab .titletext a {
+            color: #444 !important;
+            text-decoration: none;
+        }
+
+    .home-tab .tb {
+        padding-left: 0;
+    }
+
+    .frame-tab .tb {
+        margin-top: 0;
+        padding-left: 15px;
+        line-height: 32px;
+        border: none;
+    }
+
+    .home-tab .tb-c {
+        padding: 0;
+    }
+
+    .container-fluid {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .threadlist {
+        margin-top: 10px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+        .threadlist .thread-item {
+            margin-bottom: 15px;
+        }
+
+        .threadlist .thread-item-a {
+            position: relative;
+            height: 176px;
+            overflow: hidden;
+        }
+
+            .threadlist .thread-item-a a {
+                position: static;
+                display: block;
+            }
+
+        .threadlist .thread-item a {
+            color: #333 !important;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .threadlist .thread-item-a img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+        }
+
+        .threadlist .thread-item .item-title {
+            font-size: 1.25rem;
+            margin-top: .8rem;
+        }
+
+        .threadlist .thread-item .item-text {
+            line-height: 1.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .threadlist .thread-item a {
+            color: #333 !important;
+        }
+
+        .threadlist .thread-item .item-artist {
+            margin-top: 1rem;
+            opacity: .8;
+        }
+
+        .threadlist .thread-item .item-text {
+            line-height: 1.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+</style>
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Images/lunbo.jpg" alt="First slide" style="height:350px;">
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="~/Images/lunbo2.jpg" alt="Second slide" style="height:350px;">
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="~/Images/lunbo.jpg" alt="Third slide" style="height:350px;">
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="~/Images/lunbo2.jpg" alt="Three slide" style="height:350px;">
+            <div class="carousel-caption"></div>
+        </div>
+        <div class="item">
+            <img src="~/Images/lunbo.jpg" alt="Four slide" style="height:350px;">
+            <div class="carousel-caption"></div>
+        </div>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="container">
+    <div class="yuepu">
+        <div class="lanrenzhijia">
+            <div class="title cf">
+                <a class="f1" style="text-decoration:none;display:inline;font-size:25px;cursor:pointer;" href="@Url.Action("Index","MusicScore")">乐谱</a>
+                <ul class="title-list fr cf ">
+                    <li class="on">最新</li>
+                    <li>热门</li>
+                    <li>关注</li>
+                    <p><b></b></p>
+                </ul>
+            </div>
+            <div class="product-wrap">
+
+                <div class="product showw">
+
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore1)
+                        {
+                        <li>
+                            <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                            <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                            <p class="pb10"> @p.Ms_label</p>
+                        </li>  }
+                    </ul>
+
+                </div>
+                <!--案例2-->
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (MusicScore p in Model.MScore2)
+                        {
+                        <li>
+                            <a href="@Url.Action("Display","MusicScore", new { id = @p.Ms_id,})" class="imgwrap"> <img class="img-responsive" src="@p.Ms_img"> </a>
+                            <p class="mt10"> <a href="">@p.Ms_title</a></p>
+                            <p class="pb10">@p.Ms_label</p>
+                        </li>
+                        }
+
+
+                    </ul>
+                </div>
+                <!--案例3-->
+                <div class="product">
+                    <ul class="cf">
+                        @foreach (Users p in Model.Us)
+                        {
+                        <li>
+                            <a href="@Url.Action("Index","Users", new { id = @p.User_id})" class="imgwrap"> <img class="img-responsive" src="@p.User_img"> </a>
+                            <p class="mt10"> <a href="">@p.User_name </a></p>
+                            <p class="pb10">@p.User_sign</p>
+                        </li>
+                        }
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="yuepu">
+        <div class="lanrenzhijias">
+            <div class="titles cf">
+                <a class="f1" style="text-decoration:none;display:inline;font-size:25px;cursor:pointer;" href="@Url.Action("Index","Video")">视频</a>
+                <ul class="title-lists fr cf ">
+                    <li class="on">教学</li>
+                    <li>评测</li>
+                    <li>专辑</li>
+                    <p><b></b></p>
+                </ul>
+            </div>
+            <div class="product-wraps">
+                <!--案例1-->
+                <div class="products showw">
+                    <ul class="cf">
+                        @foreach (VideoUserViewModel p in Model.Videos1)
+                        {
+                        <li>
+                            <div class="port-7 effect-2">
+                                <div class="image-box">
+                                    <a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})"><img src="@p.Vi_img" alt="Image-2"></a>
+                                </div>
+                                <div class="text-desc">
+                                    <div class="zi"><a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})">@p.Vi_title</a></div>
+                                    <p>UP主:@p.User_name</p>
+                                    @*<p><a href="#" class="btn">Learn more</a></p>*@
+                                </div>
+                            </div>
+                        </li>
+                        }
+
+
+                    </ul>
+                </div>
+                <!--案例2-->
+                <div class="products">
+                    <ul class="cf">
+                        @foreach (VideoUserViewModel p in Model.Videos2)
+                        {
+                        <li>
+                            <div class="port-7 effect-2">
+                                <div class="image-box">
+                                    <a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})"><img src="@p.Vi_img" alt="Image-2"></a>
+                                </div>
+                                <div class="text-desc">
+                                    <div class="zi"><a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})">@p.Vi_title</a></div>
+                                    <p>@p.User_name</p>
+                                    @*<p><a href="#" class="btn">Learn more</a></p>*@
+                                </div>
+                            </div>
+                        </li>
+                        }
+
+                    </ul>
+                </div>
+                <!--案例3-->
+                <div class="products">
+                    <ul class="cf">
+                        @foreach (VideoUserViewModel p in Model.Videos3)
+                        {
+                        <li>
+                            <div class="port-7 effect-2">
+                                <div class="image-box">
+                                    <a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})"><img src="@p.Vi_img" alt="Image-2"></a>
+                                </div>
+                                <div class="text-desc">
+                                    <div class="zi"><a href="@Url.Action("Details","Video", new { id = @p.Vi_id,})  ">@p.Vi_title</a></div>
+                                    <p>@p.User_name</p>
+                                    @*<p><a href="#" class="btn">Learn more</a></p>*@
+                                </div>
+                            </div>
+                        </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-tab frame-tab move-span cl">
+        <h2>社区</h2>
+        <div class="tb-c">
+            <div class="dxb_bc">
+                <div class="container-fluid threadlist">
+                    <div class="row">
+                        @foreach (PostUserViewModel p in Model.Posts)
+                        {
+                            <div class="col-lg-2 col-md-4 col-xs-6">
+                                <div class="thread-item">
+                                    <div class="thread-item-a">
+                                        <a href="@Url.Action("Details","Posts", new { id = @p.Po_id})" target="_blank"><img src="@p.Po_img"></a>
+                                    </div>
+                                    <div class="item-text item-title"><a href="@Url.Action("Details","Posts", new { id = @p.Po_id})" title="@p.Po_title">@p.Po_title</a></div>
+                                    <div class="item-text item-artist">发布者：@p.User_name</div>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")

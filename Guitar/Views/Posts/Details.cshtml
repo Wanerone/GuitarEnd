@@ -1,0 +1,564 @@
+﻿@using Guitar.Models
+@using Guitar.ViewModel
+@model Guitar.ViewModel.PostDetailsViewModel
+@using Webdiyer.WebControls.Mvc;
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+<style>
+    .display {
+    }
+
+    .ulstyle {
+        padding-left: 5px;
+    }
+
+    .title {
+        margin: 10px 0;
+    }
+
+    .ulstyle li {
+        display: inline;
+        margin-right: 20px;
+        color: #6E828A;
+    }
+
+    .edimg {
+        width: 100px;
+        /*height:120px;*/
+        float: left;
+    }
+
+        .edimg img {
+            margin-bottom: 10px;
+        }
+
+    .infos {
+        /*width: 200px;*/
+        float: left;
+        margin-left: 10px;
+    }
+
+    .i1 {
+        width: 100%;
+        height: 30px;
+        margin: 12px 16px;
+    }
+
+        .i1 a {
+            font-size: 15px;
+            text-decoration: none;
+            color: #666666;
+        }
+
+    .i2 {
+        width: 150px;
+        color: #666;
+    }
+
+        .i2 table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+            empty-cells: show;
+            border-collapse: collapse;
+            display: table;
+        }
+
+        .i2 tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+
+        .i2 tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+
+        .i2 th {
+            border-right: 1px solid #CCC;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .i2 p {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .i2 a {
+            text-decoration: none;
+        }
+
+        .i2 td {
+            text-align: center;
+        }
+
+    .userinfo {
+        /*padding-top: 84px;*/
+        margin-bottom: 15px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .panel {
+        margin-bottom: 15px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .panel-h {
+        padding: 10px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    .panel-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.3rem;
+        font-weight: normal;
+        color: inherit;
+    }
+
+    .panel-c {
+        padding: 15px;
+    }
+
+    .video-grid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+        .video-grid .row {
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+    .video-item {
+        margin-bottom: 15px;
+        background: #fff;
+    }
+
+    .video-item-lt {
+        position: relative;
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .video-grid .video-item-lt a {
+        position: static;
+        display: block;
+        color: #333 !important;
+    }
+
+    .video-grid .video-item-lt img {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+    }
+
+    .video-grid .video-item:hover {
+        box-shadow: 0 0 8px rgba(64,64,64,.4);
+    }
+
+    .video-grid .video-item-rb {
+        padding: 6px 8px;
+    }
+
+    .video-grid .video-item .text-title {
+        line-height: 1.5;
+        overflow: hidden;
+    }
+
+    .video-grid .video-item a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .text-block {
+        display: block;
+        width: 100%;
+    }
+
+    .pl1 {
+        width: 50px;
+        float: left;
+        margin: 25px 40px;
+    }
+
+    .pl2 {
+        width: 50px;
+        float: left;
+        margin-right: 5px;
+    }
+
+    .pl3 {
+        float: left;
+        margin-right: 50px;
+    }
+
+    .pl11 {
+        opacity: 0.7;
+    }
+
+    .pl22 {
+        font-weight: bold;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .pinlun {
+        margin-top: 40px;
+            margin-bottom: 40px;
+    }
+
+        .pinlun a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .pinlun table {
+            table-layout: fixed;
+            width: 100%;
+            background-color: transparent;
+        }
+
+    .ta1 {
+        width: 130px;
+        border-right: none;
+        overflow: hidden;
+        vertical-align: top;
+    }
+
+    .taaa img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .taimg {
+        margin: 0 20px 0 20px;
+    }
+
+    .taname {
+        margin: 5px 0;
+        padding: 0;
+        height: auto;
+        text-align: center;
+        border-bottom: none;
+        font-size: 14px;
+        overflow: hidden;
+        color: #369;
+    }
+
+    .ta2 {
+        padding: 20px;
+        /*background-color: #F5F5F5;*/
+        background-color: #DDDDDD;
+        border-radius: 5px;
+        vertical-align: top;
+    }
+
+    .textera {
+        padding: 4px;
+    }
+
+    .textarea {
+        width: 100%;
+        height: 100px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabaio {
+        margin: 4px;
+    }
+
+    .taa1 {
+        color: #999;
+    }
+
+    .taa2 {
+        margin: 10px 0px;
+        min-height: 60px;
+        font-size: 14px;
+    }
+
+    .huifu a {
+        text-decoration: none;
+        cursor: pointer;
+        height: 20px;
+    }
+
+    .huifui1 {
+        position: relative;
+        margin: 5px -20px 0;
+        padding: 10px 20px;
+        background: #C1C1C1;
+        border-radius: 0 0 5px 5px;
+        border-top: 1px solid #DFDFDF;
+    }
+
+        .huifui1 dl {
+            border-bottom: 1px dashed #DFDFDF;
+        }
+
+    .hui1 {
+        zoom: 1;
+    }
+
+    .huiimg {
+        width: 48px;
+        height: 48px;
+        float: left;
+    }
+
+    .huiother {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .r1 {
+        color: #999;
+        font-size: 14px;
+    }
+
+        .r1 a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .r2 {
+        min-height: 28px;
+    }
+
+    .mm {
+        margin: 10px 0px;
+    }
+
+        .mm a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .myreply {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: none;
+    }
+
+    .myimg {
+        width: 48px;
+        height: 48px;
+        display: inline;
+        float: left;
+        width: 5%;
+    }
+
+        .myimg img {
+            border-radius: 5px;
+        }
+
+    .mycontent {
+        width: 80%;
+        float: left;
+        padding: 0px 10px;
+    }
+
+    .textarea2 {
+        width: 100%;
+        height: 48px;
+        margin-right: 0;
+        padding: 0 !important;
+        border: none;
+        background: #FFF none;
+        max-width: 100%;
+        resize: none;
+        line-height: 30px;
+        font: 15px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    }
+
+    .fabiao2 {
+        padding-top: 4px;
+    }
+</style>
+<div class="container" style="margin-top:10px;">
+    <br style="clear:both;">
+    <input type="hidden" value="@Model.Po.Po_id" class="Po_id" />
+    <p></p>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="display">
+                <div class="title">
+                    <h3>@Model.Po.Po_title</h3>
+                    <p></p>
+                </div>
+
+                <ul class="ulstyle">
+                    <li>
+                        <label>@Model.Po.Po_label</label>
+                    </li>
+                    <li>
+                        <label>@Model.Po.Po_addtime</label>
+                    </li>
+                    <li>
+                        <label>@Model.Po.ReadCount 阅读</label>
+                    </li>
+                    <li>
+                        <label>@Model.Po.Collection 收藏</label>
+                    </li>
+                    <li>
+                        <label>0评论</label>
+                    </li>
+                </ul>
+                <div class="content">
+                    @Html.Raw(@Model.Po.Po_content)
+                </div>
+            </div>
+            <div class="pinlun">
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td class="ta1 taaa">
+                                @if (Session["User_name"] != null)
+                                {
+                                    <div class="taimg">
+                                        @*<img src="~/Images/head.jpg" class="img-responsive img-rounded" />*@
+                                        <img src="@Session["User_img"]" class="img-responsive img-rounded" />
+                                    </div>
+                                    <div class="taname">@Session["User_name"]</div>
+                                    @*<div class="taname">慧然肯来</div>*@
+                                }
+                                else
+                                {
+                                    <img src="~/Images/headimg/head.jpg" class="img-responsive img-rounded" />
+                                }
+                            </td>
+                            <td class="ta2">
+                                @using (Ajax.BeginForm("Comment", "Video", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "PLhidden" }))
+                                {
+                                    <div class="textera">
+                                        <textarea class="textarea" name="pingluntextarea"></textarea>
+                                    </div>
+                                    <input type="hidden" name="Vi_id1" value="@Model.Po.Po_id" />
+                                    <div class="fabaio">
+                                        @*<a href="javascript:document.getElementById('pinglun').submit()" onclick="display()" class="btn btn-info">发表评论</a>*@
+                                        <input value="发表评论" class="btn btn-info" type="submit" id="queding" />
+                                    </div>
+                                }
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <lable id="PLhidden" style="display: none;"></lable>
+            <div id="articles">
+                @*@{Html.RenderAction("GetAllComment");}*@
+                @*@{Html.RenderPartial("GetAllComment",Model.msc11);}*@
+                @Html.Partial("_details1", Model.Pocomment)
+            </div>
+        </div>
+        <div class="col-lg-3 ">
+            <aside>
+                <div class="userinfo">
+                    <div class="edimg">
+                        <a href="@Url.Action("Index","Users", new { id=@Model.Us.User_id })"><img src="@Model.Us.User_img" class="img-responsive img-rounded" /></a>
+                        @using (Ajax.BeginForm("Guanzhu", "Video", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "mei1" }))
+                        {
+                            <input type="hidden" id="User_id" name="User_id" value="@Model.Po.User_id" />
+                            <input type="submit" id="guanzhu" class="btn btn-primary btn-block" value="@ViewBag.dis" />
+                        }
+                        <lable id="mei1" style="display:none"></lable>
+                    </div>
+                    <div class="infos">
+                        <div class="i1">
+                            <a href="@Url.Action("Index","Users", new { id=@Model.Us.User_id })">@Model.Us.User_name</a>
+                        </div>
+                        <div class="i2">
+                            <table cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <p><a href="">2</a></p>曲谱
+                                        </th>
+                                        <th>
+                                            <p><a rel="nofollow" href="">2</a></p>好友
+                                        </th>
+                                        <td><p><a href="">8</a></p>帖子</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br style="clear:both;">
+                </div>
+                <div style="margin-top:20px;margin-bottom: 15px;">
+                    <img src="~/Images/addd.jpg" width="260" height="260" class="img-responsive" />
+                </div>
+                <div class="panel">
+                    <div class="panel-h">
+                        <h2 class="panel-title">相关帖子</h2>
+                    </div>
+                    <div class="panel-c">
+                        <div class="video-grid">
+                            <div class="row">
+                                @foreach (Post p in Model.Po1)
+                                {
+                                    <div class="col-lg-12 col-md-12 col-xs-6">
+                                        <div class="video-item">
+                                            <div class="video-item-lt">
+                                                <a href="@Url.Action("Details","Posts",new { id=@p.Po_id})"><img src="@p.Po_img" alt="@p.Po_title"></a>
+                                            </div>
+                                            <div class="video-item-rb">
+                                                <div class="text-block text-title">
+                                                    <a href="" title="">@p.Po_title</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/Posts/AddClick",
+            data: { PoId: $(".Po_id").val() },
+            success: function (data) {
+
+                //alert(data);
+
+            }
+        });
+    });
+</script>

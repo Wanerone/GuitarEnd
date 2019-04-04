@@ -1,0 +1,25 @@
+﻿
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Guitar.ViewModel.MusicCommentReplyViewModel>
+@*@model Guitar.ViewModel.MusicCommentReplyViewModel*@
+
+@{ int mm =Convert.ToInt32(ViewData["mscommentid"]);
+    int a = 7;}
+@*@foreach (var m in Model.Where((n => n.Ms_commentid == mm)))*@
+@foreach (var m in Model)
+    {
+   
+        <input type="hidden" name="Commentid1" value="@m.Ms_commentid" />
+                <div class="huifui1">
+                    <div class="hui1">
+                        <div class="huiimg">
+                            <a><img src="@m.User_img" class="img-responsive img-rounded" /></a>
+                        </div>
+                        <div class="huiother">
+                            <div class="r1"><a>@m.User_name</a>  发表于  @m.Addtime</div>
+                            <div class="r2">@m.content</div>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+    }
